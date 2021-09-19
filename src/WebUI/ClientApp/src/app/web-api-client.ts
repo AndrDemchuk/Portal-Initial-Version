@@ -643,7 +643,7 @@ export class WeatherForecastClient implements IWeatherForecastClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<WeatherForecast[]>(<any>null);
+        return _observableOf<WeatherForecast[]>(<any>null) as any;
     }
 }
 
