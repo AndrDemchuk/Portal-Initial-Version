@@ -15,10 +15,10 @@
     "lib": [
       "es2017",
       "dom"
-    ],
-	"eclude": [
+    ]
+  },
+  	"exclude": [
 		"./node_modules",
 		"**/*.spec.ts"
 	]
-  }
 }
