@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
 using System;
 
-namespace CleanArchitecture.Infrastructure.Services
+namespace BvAcademyPortal.Infrastructure.Services
 {
     public class DateTimeService : IDateTime
     {

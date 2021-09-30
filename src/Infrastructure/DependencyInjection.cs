@@ -1,15 +1,15 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure.Files;
-using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Services;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Infrastructure.Files;
+using BvAcademyPortal.Infrastructure.Identity;
+using BvAcademyPortal.Infrastructure.Persistence;
+using BvAcademyPortal.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Infrastructure
+namespace BvAcademyPortal.Infrastructure
 {
     public static class DependencyInjection
     {
@@ -18,7 +18,7 @@ namespace CleanArchitecture.Infrastructure
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseInMemoryDatabase("CleanArchitectureDb"));
+                    options.UseInMemoryDatabase("BvAcademyPortalDb"));
             }
             else
             {

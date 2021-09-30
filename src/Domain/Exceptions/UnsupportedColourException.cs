@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitecture.Domain.Exceptions
+namespace BvAcademyPortal.Domain.Exceptions
 {
     public class UnsupportedColourException : Exception
     {

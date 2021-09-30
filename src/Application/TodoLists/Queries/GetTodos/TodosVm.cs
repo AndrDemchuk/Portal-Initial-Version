@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
+namespace BvAcademyPortal.Application.TodoLists.Queries.GetTodos
 {
     public class TodosVm
     {

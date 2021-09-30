@@ -1,13 +1,13 @@
-﻿using CleanArchitecture.Application.TodoLists.Commands.CreateTodoList;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
-using CleanArchitecture.Application.TodoLists.Commands.UpdateTodoList;
-using CleanArchitecture.Application.TodoLists.Queries.ExportTodos;
-using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
+﻿using BvAcademyPortal.Application.TodoLists.Commands.CreateTodoList;
+using BvAcademyPortal.Application.TodoLists.Commands.DeleteTodoList;
+using BvAcademyPortal.Application.TodoLists.Commands.UpdateTodoList;
+using BvAcademyPortal.Application.TodoLists.Queries.ExportTodos;
+using BvAcademyPortal.Application.TodoLists.Queries.GetTodos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.WebUI.Controllers
+namespace BvAcademyPortal.WebUI.Controllers
 {
     [Authorize]
     public class TodoListsController : ApiControllerBase

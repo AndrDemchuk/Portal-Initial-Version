@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.TodoLists.Queries.ExportTodos;
-using CleanArchitecture.Infrastructure.Files.Maps;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.TodoLists.Queries.ExportTodos;
+using BvAcademyPortal.Infrastructure.Files.Maps;
 using CsvHelper;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
-namespace CleanArchitecture.Infrastructure.Files
+namespace BvAcademyPortal.Infrastructure.Files
 {
     public class CsvFileBuilder : ICsvFileBuilder
     {

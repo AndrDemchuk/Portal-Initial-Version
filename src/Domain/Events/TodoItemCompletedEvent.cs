@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Entities;
+﻿using BvAcademyPortal.Domain.Common;
+using BvAcademyPortal.Domain.Entities;
 
-namespace CleanArchitecture.Domain.Events
+namespace BvAcademyPortal.Domain.Events
 {
     public class TodoItemCompletedEvent : DomainEvent
     {

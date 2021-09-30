@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Domain.Events;
+﻿using BvAcademyPortal.Domain.Common;
+using BvAcademyPortal.Domain.Enums;
+using BvAcademyPortal.Domain.Events;
 using System;
 using System.Collections.Generic;
 
-namespace CleanArchitecture.Domain.Entities
+namespace BvAcademyPortal.Domain.Entities
 {
     public class TodoItem : AuditableEntity, IHasDomainEvent
     {

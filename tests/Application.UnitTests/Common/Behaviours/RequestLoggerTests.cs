@@ -1,13 +1,13 @@
-﻿using CleanArchitecture.Application.Common.Behaviours;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.TodoItems.Commands.CreateTodoItem;
+﻿using BvAcademyPortal.Application.Common.Behaviours;
+using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.TodoItems.Commands.CreateTodoItem;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.UnitTests.Common.Behaviours
+namespace BvAcademyPortal.Application.UnitTests.Common.Behaviours
 {
     public class RequestLoggerTests
     {

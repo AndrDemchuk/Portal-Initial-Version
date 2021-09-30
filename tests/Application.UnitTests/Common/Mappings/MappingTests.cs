@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
-using CleanArchitecture.Domain.Entities;
+using BvAcademyPortal.Application.Common.Mappings;
+using BvAcademyPortal.Application.TodoLists.Queries.GetTodos;
+using BvAcademyPortal.Domain.Entities;
 using NUnit.Framework;
 using System;
 using System.Runtime.Serialization;
 
-namespace CleanArchitecture.Application.UnitTests.Common.Mappings
+namespace BvAcademyPortal.Application.UnitTests.Common.Mappings
 {
     public class MappingTests
     {

@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Exceptions;
+﻿using BvAcademyPortal.Domain.Common;
+using BvAcademyPortal.Domain.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CleanArchitecture.Domain.ValueObjects
+namespace BvAcademyPortal.Domain.ValueObjects
 {
     public class Colour : ValueObject
     {

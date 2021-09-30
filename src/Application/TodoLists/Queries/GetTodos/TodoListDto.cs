@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Domain.Entities;
+﻿using BvAcademyPortal.Application.Common.Mappings;
+using BvAcademyPortal.Domain.Entities;
 using System.Collections.Generic;
 
-namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
+namespace BvAcademyPortal.Application.TodoLists.Queries.GetTodos
 {
     public class TodoListDto : IMapFrom<TodoList>
     {

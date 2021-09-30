@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.ValueObjects;
+﻿using BvAcademyPortal.Domain.Common;
+using BvAcademyPortal.Domain.ValueObjects;
 using System.Collections.Generic;
 
-namespace CleanArchitecture.Domain.Entities
+namespace BvAcademyPortal.Domain.Entities
 {
     public class TodoList : AuditableEntity
     {

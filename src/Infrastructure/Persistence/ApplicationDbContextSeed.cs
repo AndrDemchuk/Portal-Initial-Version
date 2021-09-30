@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.ValueObjects;
-using CleanArchitecture.Infrastructure.Identity;
+﻿using BvAcademyPortal.Domain.Entities;
+using BvAcademyPortal.Domain.ValueObjects;
+using BvAcademyPortal.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Persistence
+namespace BvAcademyPortal.Infrastructure.Persistence
 {
     public static class ApplicationDbContextSeed
     {

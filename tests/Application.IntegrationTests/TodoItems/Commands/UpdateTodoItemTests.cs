@@ -1,14 +1,14 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.TodoItems.Commands.CreateTodoItem;
-using CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItem;
-using CleanArchitecture.Application.TodoLists.Commands.CreateTodoList;
-using CleanArchitecture.Domain.Entities;
+﻿using BvAcademyPortal.Application.Common.Exceptions;
+using BvAcademyPortal.Application.TodoItems.Commands.CreateTodoItem;
+using BvAcademyPortal.Application.TodoItems.Commands.UpdateTodoItem;
+using BvAcademyPortal.Application.TodoLists.Commands.CreateTodoList;
+using BvAcademyPortal.Domain.Entities;
 using FluentAssertions;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System;
 
-namespace CleanArchitecture.Application.IntegrationTests.TodoItems.Commands
+namespace BvAcademyPortal.Application.IntegrationTests.TodoItems.Commands
 {
     using static Testing;
 

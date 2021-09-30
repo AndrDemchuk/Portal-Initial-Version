@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Domain.Entities;
+﻿using BvAcademyPortal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Configurations
+namespace BvAcademyPortal.Infrastructure.Persistence.Configurations
 {
     public class TodoItemConfiguration : IEntityTypeConfiguration<TodoItem>
     {

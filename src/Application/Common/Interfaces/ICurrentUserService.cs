@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Common.Interfaces
+﻿namespace BvAcademyPortal.Application.Common.Interfaces
 {
     public interface ICurrentUserService
     {

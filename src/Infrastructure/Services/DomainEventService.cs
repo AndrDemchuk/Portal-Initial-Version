@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Domain.Common;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.Common.Models;
+using BvAcademyPortal.Domain.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Services
+namespace BvAcademyPortal.Infrastructure.Services
 {
     public class DomainEventService : IDomainEventService
     {

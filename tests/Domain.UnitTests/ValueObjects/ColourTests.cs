@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Exceptions;
-using CleanArchitecture.Domain.ValueObjects;
+﻿using BvAcademyPortal.Domain.Exceptions;
+using BvAcademyPortal.Domain.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace CleanArchitecture.Domain.UnitTests.ValueObjects
+namespace BvAcademyPortal.Domain.UnitTests.ValueObjects
 {
     public class ColourTests
     {

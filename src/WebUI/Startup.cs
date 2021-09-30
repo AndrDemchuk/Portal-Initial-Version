@@ -1,9 +1,9 @@
-using CleanArchitecture.Application;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.WebUI.Filters;
-using CleanArchitecture.WebUI.Services;
+using BvAcademyPortal.Application;
+using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Infrastructure;
+using BvAcademyPortal.Infrastructure.Persistence;
+using BvAcademyPortal.WebUI.Filters;
+using BvAcademyPortal.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +16,7 @@ using NSwag;
 using NSwag.Generation.Processors.Security;
 using System.Linq;
 
-namespace CleanArchitecture.WebUI
+namespace BvAcademyPortal.WebUI
 {
     public class Startup
     {
@@ -62,7 +62,7 @@ namespace CleanArchitecture.WebUI
 
             services.AddOpenApiDocument(configure =>
             {
-                configure.Title = "CleanArchitecture API";
+                configure.Title = "BvAcademyPortal API";
                 configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
                 {
                     Type = OpenApiSecuritySchemeType.ApiKey,

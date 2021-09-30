@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>CleanArchitecture.Infrastructure</RootNamespace>
-    <AssemblyName>CleanArchitecture.Infrastructure</AssemblyName>
+    <RootNamespace>BvAcademyPortal.Infrastructure</RootNamespace>
+    <AssemblyName>BvAcademyPortal.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

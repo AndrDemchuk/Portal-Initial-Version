@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CleanArchitecture.Domain.Common
+namespace BvAcademyPortal.Domain.Common
 {
     public interface IHasDomainEvent
     {

@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Domain.Common;
+﻿using BvAcademyPortal.Domain.Common;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace BvAcademyPortal.Application.Common.Interfaces
 {
     public interface IDomainEventService
     {

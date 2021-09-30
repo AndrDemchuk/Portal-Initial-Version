@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebUI.Services
+namespace BvAcademyPortal.WebUI.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

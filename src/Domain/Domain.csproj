@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>CleanArchitecture.Domain</RootNamespace>
-    <AssemblyName>CleanArchitecture.Domain</AssemblyName>
+    <RootNamespace>BvAcademyPortal.Domain</RootNamespace>
+    <AssemblyName>BvAcademyPortal.Domain</AssemblyName>
   </PropertyGroup>
 
 </Project>

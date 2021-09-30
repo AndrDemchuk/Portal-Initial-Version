@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
-using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Domain.ValueObjects;
+﻿using BvAcademyPortal.Application.TodoLists.Queries.GetTodos;
+using BvAcademyPortal.Domain.Entities;
+using BvAcademyPortal.Domain.ValueObjects;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.IntegrationTests.TodoLists.Queries
+namespace BvAcademyPortal.Application.IntegrationTests.TodoLists.Queries
 {
     using static Testing;
 
