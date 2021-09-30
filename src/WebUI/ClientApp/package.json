@@ -1,5 +1,5 @@
 {
-  "name": "BvAcademyPortal.webui",
+  "name": "BvAcademyPortal",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "12.2.6",
     "@angular/platform-server": "12.2.6",
     "@angular/router": "12.2.6",
+    "@azure/msal-angular": "^2.0.2",
+    "@azure/msal-browser": "^2.16.1",
     "@fortawesome/angular-fontawesome": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "1.2.36",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
@@ -41,6 +43,7 @@
     "@angular/cli": "12.2.6",
     "@angular/compiler-cli": "12.2.6",
     "@angular/language-service": "12.2.6",
+    "@nguniversal/module-map-ngfactory-loader": "^8.2.6",
     "@types/jasmine": "~3.9.1",
     "@types/jasminewd2": "~2.0.10",
     "@types/node": "^16.9.4",
