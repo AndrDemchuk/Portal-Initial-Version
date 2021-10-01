@@ -11,7 +11,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { msalConfig, loginRequest, protectedResources } from './auth-config';
-import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG } from '@azure/msal-angular';
+import {
+  MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration,
+  MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG
+} from '@azure/msal-angular';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.
@@ -19,16 +22,17 @@ import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalIntercepto
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/configuration.md
  */
 
- export function MSALInstanceFactory(): IPublicClientApplication {
+export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication(msalConfig);
 }
 
 /**
  * MSAL Angular will automatically retrieve tokens for resources
  * added to protectedResourceMap. For more info, visit:
+ * tslint:disable-next-line:max-line-length
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/initialization.md#get-tokens-for-web-api-calls
  */
- export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
+export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
 
   protectedResourceMap.set(protectedResources.api.endpoint, protectedResources.api.scopes);
@@ -43,7 +47,7 @@ import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalIntercepto
  * Set your default interaction type for MSALGuard here. If you have any
  * additional scopes you want the user to consent upon login, add them here as well.
  */
- export function MSALGuardConfigFactory(): MsalGuardConfiguration {
+export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return {
     interactionType: InteractionType.Redirect,
     authRequest: loginRequest

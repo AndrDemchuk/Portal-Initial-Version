@@ -1,19 +1,15 @@
-﻿using BvAcademyPortal.Application.Common.Interfaces;
+﻿using System.Linq;
+using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Domain.Common;
 using BvAcademyPortal.Domain.Entities;
-using BvAcademyPortal.Infrastructure.Identity;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -21,10 +17,9 @@ namespace BvAcademyPortal.Infrastructure.Persistence
 
         public ApplicationDbContext(
             DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions,
             ICurrentUserService currentUserService,
             IDomainEventService domainEventService,
-            IDateTime dateTime) : base(options, operationalStoreOptions)
+            IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
             _domainEventService = domainEventService;
@@ -71,11 +66,11 @@ namespace BvAcademyPortal.Infrastructure.Persistence
         {
             while (true)
             {
-                var domainEventEntity = ChangeTracker.Entries<IHasDomainEvent>()
+                var domainEventEntity = ChangeTracker
+                    .Entries<IHasDomainEvent>()
                     .Select(x => x.Entity.DomainEvents)
                     .SelectMany(x => x)
-                    .Where(domainEvent => !domainEvent.IsPublished)
-                    .FirstOrDefault();
+                    .FirstOrDefault(domainEvent => !domainEvent.IsPublished);
                 if (domainEventEntity == null) break;
 
                 domainEventEntity.IsPublished = true;

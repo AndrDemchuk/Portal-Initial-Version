@@ -5,12 +5,12 @@
  */
  export const b2cPolicies = {
     names: {
-        signUpSignIn: "B2C_1_susi",
+        signUpSignIn: 'B2C_1_susi',
     },
     authorities: {
         signUpSignIn: {
-            authority: "https://academybv.b2clogin.com/academybv.onmicrosoft.com/B2C_1_susi",
+            authority: 'https://academybv.b2clogin.com/academybv.onmicrosoft.com/B2C_1_susi',
         },
     },
-    authorityDomain: "academybv.b2clogin.com"
-}
+    authorityDomain: 'academybv.b2clogin.com'
+};
