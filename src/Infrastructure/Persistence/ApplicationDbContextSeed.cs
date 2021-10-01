@@ -30,22 +30,22 @@ namespace BvAcademyPortal.Infrastructure.Persistence
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
             // Seed, if necessary
-            if (!context.TodoLists.Any())
+            if (!context.Courses.Any())
             {
-                context.TodoLists.Add(new TodoList
+                context.Courses.Add(new Course
                 {
                     Title = "Shopping",
                     Colour = Colour.Blue,
-                    Items =
+                    Topics =
                     {
-                        new TodoItem { Title = "Apples", Done = true },
-                        new TodoItem { Title = "Milk", Done = true },
-                        new TodoItem { Title = "Bread", Done = true },
-                        new TodoItem { Title = "Toilet paper" },
-                        new TodoItem { Title = "Pasta" },
-                        new TodoItem { Title = "Tissues" },
-                        new TodoItem { Title = "Tuna" },
-                        new TodoItem { Title = "Water" }
+                        new Topic { Title = "Apples", Done = true },
+                        new Topic { Title = "Milk", Done = true },
+                        new Topic { Title = "Bread", Done = true },
+                        new Topic { Title = "Toilet paper" },
+                        new Topic { Title = "Pasta" },
+                        new Topic { Title = "Tissues" },
+                        new Topic { Title = "Tuna" },
+                        new Topic { Title = "Water" }
                     }
                 });
 
