@@ -86,7 +86,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoLists",
+                name: "Courses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -100,7 +100,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TodoLists", x => x.Id);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -230,9 +230,9 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_TodoItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TodoItems_TodoLists_ListId",
+                        name: "FK_TodoItems_Courses_ListId",
                         column: x => x.ListId,
-                        principalTable: "TodoLists",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -341,7 +341,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TodoLists");
+                name: "Courses");
         }
     }
 }

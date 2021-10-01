@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BvAcademyPortal.Application.Common.Mappings;
-using BvAcademyPortal.Application.TodoLists.Queries.GetTodos;
+using BvAcademyPortal.Application.Courses.Queries.GetTodos;
 using BvAcademyPortal.Domain.Entities;
 using NUnit.Framework;
 using System;
@@ -30,7 +30,7 @@ namespace BvAcademyPortal.Application.UnitTests.Common.Mappings
         }
         
         [Test]
-        [TestCase(typeof(TodoList), typeof(TodoListDto))]
+        [TestCase(typeof(Course), typeof(CourseDto))]
         [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {

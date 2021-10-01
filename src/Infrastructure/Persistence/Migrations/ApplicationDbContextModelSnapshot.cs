@@ -65,7 +65,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     b.ToTable("TodoItems");
                 });
 
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +91,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("BvAcademyPortal.Infrastructure.Identity.ApplicationUser", b =>
@@ -399,7 +399,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoItem", b =>
                 {
-                    b.HasOne("BvAcademyPortal.Domain.Entities.TodoList", "List")
+                    b.HasOne("BvAcademyPortal.Domain.Entities.Course", "List")
                         .WithMany("Items")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -408,11 +408,11 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     b.Navigation("List");
                 });
 
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
                 {
                     b.OwnsOne("BvAcademyPortal.Domain.ValueObjects.Colour", "Colour", b1 =>
                         {
-                            b1.Property<int>("TodoListId")
+                            b1.Property<int>("CourseId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .UseIdentityColumn();
@@ -420,12 +420,12 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                             b1.Property<string>("Code")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("TodoListId");
+                            b1.HasKey("CourseId");
 
-                            b1.ToTable("TodoLists");
+                            b1.ToTable("Courses");
 
                             b1.WithOwner()
-                                .HasForeignKey("TodoListId");
+                                .HasForeignKey("CourseId");
                         });
 
                     b.Navigation("Colour");
@@ -482,7 +482,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoList", b =>
+            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
                 {
                     b.Navigation("Items");
                 });

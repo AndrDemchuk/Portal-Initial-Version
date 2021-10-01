@@ -1,7 +1,7 @@
 ﻿using BvAcademyPortal.Application.Common.Exceptions;
 using BvAcademyPortal.Application.TodoItems.Commands.CreateTodoItem;
 using BvAcademyPortal.Application.TodoItems.Commands.DeleteTodoItem;
-using BvAcademyPortal.Application.TodoLists.Commands.CreateTodoList;
+using BvAcademyPortal.Application.Courses.Commands.CreateCourse;
 using BvAcademyPortal.Domain.Entities;
 using FluentAssertions;
 using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace BvAcademyPortal.Application.IntegrationTests.TodoItems.Commands
         [Test]
         public async Task ShouldDeleteTodoItem()
         {
-            var listId = await SendAsync(new CreateTodoListCommand
+            var listId = await SendAsync(new CreateCourseCommand
             {
                 Title = "New List"
             });

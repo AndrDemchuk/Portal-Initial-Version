@@ -10,7 +10,7 @@ namespace BvAcademyPortal.Domain.Entities
     {
         public int Id { get; set; }
 
-        public TodoList List { get; set; }
+        public Course List { get; set; }
 
         public int ListId { get; set; }
 

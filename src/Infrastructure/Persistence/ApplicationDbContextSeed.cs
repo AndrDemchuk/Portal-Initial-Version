@@ -30,9 +30,9 @@ namespace BvAcademyPortal.Infrastructure.Persistence
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
             // Seed, if necessary
-            if (!context.TodoLists.Any())
+            if (!context.Courses.Any())
             {
-                context.TodoLists.Add(new TodoList
+                context.Courses.Add(new Course
                 {
                     Title = "Shopping",
                     Colour = Colour.Blue,

@@ -1,4 +1,4 @@
-﻿using BvAcademyPortal.Application.TodoLists.Queries.ExportTodos;
+﻿using BvAcademyPortal.Application.Courses.Queries.ExportTodos;
 using System.Collections.Generic;
 
 namespace BvAcademyPortal.Application.Common.Interfaces

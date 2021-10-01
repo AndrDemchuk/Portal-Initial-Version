@@ -2,7 +2,7 @@
 using BvAcademyPortal.Application.TodoItems.Commands.CreateTodoItem;
 using BvAcademyPortal.Application.TodoItems.Commands.UpdateTodoItem;
 using BvAcademyPortal.Application.TodoItems.Commands.UpdateTodoItemDetail;
-using BvAcademyPortal.Application.TodoLists.Commands.CreateTodoList;
+using BvAcademyPortal.Application.Courses.Commands.CreateCourse;
 using BvAcademyPortal.Domain.Entities;
 using BvAcademyPortal.Domain.Enums;
 using FluentAssertions;
@@ -34,7 +34,7 @@ namespace BvAcademyPortal.Application.IntegrationTests.TodoItems.Commands
         {
             var userId = await RunAsDefaultUserAsync();
 
-            var listId = await SendAsync(new CreateTodoListCommand
+            var listId = await SendAsync(new CreateCourseCommand
             {
                 Title = "New List"
             });
