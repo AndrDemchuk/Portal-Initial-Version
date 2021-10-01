@@ -8,9 +8,7 @@ namespace BvAcademyPortal.Application.Common.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<Course> Courses { get; set; }
-
         DbSet<Topic> Topics { get; set; }
-
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

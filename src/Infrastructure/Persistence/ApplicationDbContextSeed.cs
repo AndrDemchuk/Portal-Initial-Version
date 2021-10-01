@@ -36,7 +36,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence
                 {
                     Title = "Shopping",
                     Colour = Colour.Blue,
-                    Items =
+                    Topics =
                     {
                         new Topic { Title = "Apples", Done = true },
                         new Topic { Title = "Milk", Done = true },
