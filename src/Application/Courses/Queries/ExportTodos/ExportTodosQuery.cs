@@ -31,14 +31,14 @@ namespace BvAcademyPortal.Application.Courses.Queries.ExportTodos
         {
             var vm = new ExportTodosVm();
 
-            var records = await _context.TodoItems
+            var records = await _context.Topics
                     .Where(t => t.ListId == request.ListId)
-                    .ProjectTo<TodoItemRecord>(_mapper.ConfigurationProvider)
+                    .ProjectTo<TopicRecord>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
 
-            vm.Content = _fileBuilder.BuildTodoItemsFile(records);
+            vm.Content = _fileBuilder.BuildTopicsFile(records);
             vm.ContentType = "text/csv";
-            vm.FileName = "TodoItems.csv";
+            vm.FileName = "Topics.csv";
 
             return await Task.FromResult(vm);
         }

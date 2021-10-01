@@ -31,7 +31,7 @@ namespace BvAcademyPortal.Application.UnitTests.Common.Mappings
         
         [Test]
         [TestCase(typeof(Course), typeof(CourseDto))]
-        [TestCase(typeof(TodoItem), typeof(TodoItemDto))]
+        [TestCase(typeof(Topic), typeof(TopicDto))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = GetInstanceOf(source);

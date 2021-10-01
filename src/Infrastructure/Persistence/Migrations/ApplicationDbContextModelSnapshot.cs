@@ -19,7 +19,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Topic", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +62,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("ListId");
 
-                    b.ToTable("TodoItems");
+                    b.ToTable("Topics");
                 });
 
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
@@ -397,7 +397,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.TodoItem", b =>
+            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Topic", b =>
                 {
                     b.HasOne("BvAcademyPortal.Domain.Entities.Course", "List")
                         .WithMany("Items")

@@ -189,12 +189,12 @@
         ]
       }
     },
-    "/api/TodoItems": {
+    "/api/Topics": {
       "get": {
         "tags": [
-          "TodoItems"
+          "Topics"
         ],
-        "operationId": "TodoItems_GetTodoItemsWithPagination",
+        "operationId": "Topics_GetTopicsWithPagination",
         "parameters": [
           {
             "name": "ListId",
@@ -230,7 +230,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedListOfTodoItemBriefDto"
+                  "$ref": "#/components/schemas/PaginatedListOfTopicBriefDto"
                 }
               }
             }
@@ -244,15 +244,15 @@
       },
       "post": {
         "tags": [
-          "TodoItems"
+          "Topics"
         ],
-        "operationId": "TodoItems_Create",
+        "operationId": "Topics_Create",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateTodoItemCommand"
+                "$ref": "#/components/schemas/CreateTopicCommand"
               }
             }
           },
@@ -279,12 +279,12 @@
         ]
       }
     },
-    "/api/TodoItems/{id}": {
+    "/api/Topics/{id}": {
       "put": {
         "tags": [
-          "TodoItems"
+          "Topics"
         ],
-        "operationId": "TodoItems_Update",
+        "operationId": "Topics_Update",
         "parameters": [
           {
             "name": "id",
@@ -302,7 +302,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoItemCommand"
+                "$ref": "#/components/schemas/UpdateTopicCommand"
               }
             }
           },
@@ -330,9 +330,9 @@
       },
       "delete": {
         "tags": [
-          "TodoItems"
+          "Topics"
         ],
-        "operationId": "TodoItems_Delete",
+        "operationId": "Topics_Delete",
         "parameters": [
           {
             "name": "id",
@@ -365,12 +365,12 @@
         ]
       }
     },
-    "/api/TodoItems/UpdateItemDetails": {
+    "/api/Topics/UpdateItemDetails": {
       "put": {
         "tags": [
-          "TodoItems"
+          "Topics"
         ],
-        "operationId": "TodoItems_UpdateItemDetails",
+        "operationId": "Topics_UpdateItemDetails",
         "parameters": [
           {
             "name": "id",
@@ -387,7 +387,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateTodoItemDetailCommand"
+                "$ref": "#/components/schemas/UpdateTopicDetailCommand"
               }
             }
           },
@@ -494,12 +494,12 @@
             "type": "array",
             "nullable": true,
             "items": {
-              "$ref": "#/components/schemas/TodoItemDto"
+              "$ref": "#/components/schemas/TopicDto"
             }
           }
         }
       },
-      "TodoItemDto": {
+      "TopicDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -552,7 +552,7 @@
           }
         }
       },
-      "PaginatedListOfTodoItemBriefDto": {
+      "PaginatedListOfTopicBriefDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -560,7 +560,7 @@
             "type": "array",
             "nullable": true,
             "items": {
-              "$ref": "#/components/schemas/TodoItemBriefDto"
+              "$ref": "#/components/schemas/TopicBriefDto"
             }
           },
           "pageIndex": {
@@ -583,7 +583,7 @@
           }
         }
       },
-      "TodoItemBriefDto": {
+      "TopicBriefDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -604,7 +604,7 @@
           }
         }
       },
-      "CreateTodoItemCommand": {
+      "CreateTopicCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -618,7 +618,7 @@
           }
         }
       },
-      "UpdateTodoItemCommand": {
+      "UpdateTopicCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -635,7 +635,7 @@
           }
         }
       },
-      "UpdateTodoItemDetailCommand": {
+      "UpdateTopicDetailCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {

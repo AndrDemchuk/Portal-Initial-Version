@@ -31,7 +31,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<Topic> Topics { get; set; }
 
         public DbSet<Course> Courses { get; set; }
 

@@ -5,6 +5,6 @@ namespace BvAcademyPortal.Application.Common.Interfaces
 {
     public interface ICsvFileBuilder
     {
-        byte[] BuildTodoItemsFile(IEnumerable<TodoItemRecord> records);
+        byte[] BuildTopicsFile(IEnumerable<TopicRecord> records);
     }
 }

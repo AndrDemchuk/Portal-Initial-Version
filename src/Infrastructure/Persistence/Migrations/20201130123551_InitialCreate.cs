@@ -210,7 +210,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TodoItems",
+                name: "Topics",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -228,9 +228,9 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TodoItems", x => x.Id);
+                    table.PrimaryKey("PK_Topics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TodoItems_Courses_ListId",
+                        name: "FK_Topics_Courses_ListId",
                         column: x => x.ListId,
                         principalTable: "Courses",
                         principalColumn: "Id",
@@ -303,8 +303,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TodoItems_ListId",
-                table: "TodoItems",
+                name: "IX_Topics_ListId",
+                table: "Topics",
                 column: "ListId");
         }
 
@@ -332,7 +332,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
-                name: "TodoItems");
+                name: "Topics");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

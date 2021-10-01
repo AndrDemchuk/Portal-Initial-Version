@@ -31,13 +31,13 @@ namespace BvAcademyPortal.Application.IntegrationTests.Courses.Queries
                 Colour = Colour.Blue,
                 Items =
                     {
-                        new TodoItem { Title = "Apples", Done = true },
-                        new TodoItem { Title = "Milk", Done = true },
-                        new TodoItem { Title = "Bread", Done = true },
-                        new TodoItem { Title = "Toilet paper" },
-                        new TodoItem { Title = "Pasta" },
-                        new TodoItem { Title = "Tissues" },
-                        new TodoItem { Title = "Tuna" }
+                        new Topic { Title = "Apples", Done = true },
+                        new Topic { Title = "Milk", Done = true },
+                        new Topic { Title = "Bread", Done = true },
+                        new Topic { Title = "Toilet paper" },
+                        new Topic { Title = "Pasta" },
+                        new Topic { Title = "Tissues" },
+                        new Topic { Title = "Tuna" }
                     }
             });
 

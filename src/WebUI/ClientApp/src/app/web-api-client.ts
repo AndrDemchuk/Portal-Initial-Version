@@ -287,18 +287,18 @@ export class CoursesClient implements ICoursesClient {
     }
 }
 
-export interface ITodoItemsClient {
-    getTodoItemsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfTodoItemBriefDto>;
-    create(command: CreateTodoItemCommand): Observable<number>;
-    update(id: number, command: UpdateTodoItemCommand): Observable<FileResponse>;
+export interface ITopicsClient {
+    getTopicsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfTopicBriefDto>;
+    create(command: CreateTopicCommand): Observable<number>;
+    update(id: number, command: UpdateTopicCommand): Observable<FileResponse>;
     delete(id: number): Observable<FileResponse>;
-    updateItemDetails(id: number | undefined, command: UpdateTodoItemDetailCommand): Observable<FileResponse>;
+    updateItemDetails(id: number | undefined, command: UpdateTopicDetailCommand): Observable<FileResponse>;
 }
 
 @Injectable({
     providedIn: 'root'
 })
-export class TodoItemsClient implements ITodoItemsClient {
+export class TopicsClient implements ITopicsClient {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -308,8 +308,8 @@ export class TodoItemsClient implements ITodoItemsClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    getTodoItemsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfTodoItemBriefDto> {
-        let url_ = this.baseUrl + "/api/TodoItems?";
+    getTopicsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfTopicBriefDto> {
+        let url_ = this.baseUrl + "/api/Topics?";
         if (listId === null)
             throw new Error("The parameter 'listId' cannot be null.");
         else if (listId !== undefined)
@@ -333,20 +333,20 @@ export class TodoItemsClient implements ITodoItemsClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetTodoItemsWithPagination(response_);
+            return this.processGetTopicsWithPagination(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetTodoItemsWithPagination(<any>response_);
+                    return this.processGetTopicsWithPagination(<any>response_);
                 } catch (e) {
-                    return <Observable<PaginatedListOfTodoItemBriefDto>><any>_observableThrow(e);
+                    return <Observable<PaginatedListOfTopicBriefDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<PaginatedListOfTodoItemBriefDto>><any>_observableThrow(response_);
+                return <Observable<PaginatedListOfTopicBriefDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetTodoItemsWithPagination(response: HttpResponseBase): Observable<PaginatedListOfTodoItemBriefDto> {
+    protected processGetTopicsWithPagination(response: HttpResponseBase): Observable<PaginatedListOfTopicBriefDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -357,7 +357,7 @@ export class TodoItemsClient implements ITodoItemsClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = PaginatedListOfTodoItemBriefDto.fromJS(resultData200);
+            result200 = PaginatedListOfTopicBriefDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -365,11 +365,11 @@ export class TodoItemsClient implements ITodoItemsClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<PaginatedListOfTodoItemBriefDto>(<any>null);
+        return _observableOf<PaginatedListOfTopicBriefDto>(<any>null);
     }
 
-    create(command: CreateTodoItemCommand): Observable<number> {
-        let url_ = this.baseUrl + "/api/TodoItems";
+    create(command: CreateTopicCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/Topics";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -420,8 +420,8 @@ export class TodoItemsClient implements ITodoItemsClient {
         return _observableOf<number>(<any>null);
     }
 
-    update(id: number, command: UpdateTodoItemCommand): Observable<FileResponse> {
-        let url_ = this.baseUrl + "/api/TodoItems/{id}";
+    update(id: number, command: UpdateTopicCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/Topics/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -474,7 +474,7 @@ export class TodoItemsClient implements ITodoItemsClient {
     }
 
     delete(id: number): Observable<FileResponse> {
-        let url_ = this.baseUrl + "/api/TodoItems/{id}";
+        let url_ = this.baseUrl + "/api/Topics/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id));
@@ -522,8 +522,8 @@ export class TodoItemsClient implements ITodoItemsClient {
         return _observableOf<FileResponse>(<any>null);
     }
 
-    updateItemDetails(id: number | undefined, command: UpdateTodoItemDetailCommand): Observable<FileResponse> {
-        let url_ = this.baseUrl + "/api/TodoItems/UpdateItemDetails?";
+    updateItemDetails(id: number | undefined, command: UpdateTopicDetailCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/Topics/UpdateItemDetails?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
         else if (id !== undefined)
@@ -747,7 +747,7 @@ export class CourseDto implements ICourseDto {
     id?: number;
     title?: string | undefined;
     colour?: string | undefined;
-    items?: TodoItemDto[] | undefined;
+    items?: TopicDto[] | undefined;
 
     constructor(data?: ICourseDto) {
         if (data) {
@@ -766,7 +766,7 @@ export class CourseDto implements ICourseDto {
             if (Array.isArray(_data["items"])) {
                 this.items = [] as any;
                 for (let item of _data["items"])
-                    this.items!.push(TodoItemDto.fromJS(item));
+                    this.items!.push(TopicDto.fromJS(item));
             }
         }
     }
@@ -796,10 +796,10 @@ export interface ICourseDto {
     id?: number;
     title?: string | undefined;
     colour?: string | undefined;
-    items?: TodoItemDto[] | undefined;
+    items?: TopicDto[] | undefined;
 }
 
-export class TodoItemDto implements ITodoItemDto {
+export class TopicDto implements ITopicDto {
     id?: number;
     listId?: number;
     title?: string | undefined;
@@ -807,7 +807,7 @@ export class TodoItemDto implements ITodoItemDto {
     priority?: number;
     note?: string | undefined;
 
-    constructor(data?: ITodoItemDto) {
+    constructor(data?: ITopicDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -827,9 +827,9 @@ export class TodoItemDto implements ITodoItemDto {
         }
     }
 
-    static fromJS(data: any): TodoItemDto {
+    static fromJS(data: any): TopicDto {
         data = typeof data === 'object' ? data : {};
-        let result = new TodoItemDto();
+        let result = new TopicDto();
         result.init(data);
         return result;
     }
@@ -846,7 +846,7 @@ export class TodoItemDto implements ITodoItemDto {
     }
 }
 
-export interface ITodoItemDto {
+export interface ITopicDto {
     id?: number;
     listId?: number;
     title?: string | undefined;
@@ -931,15 +931,15 @@ export interface IUpdateCourseCommand {
     title?: string | undefined;
 }
 
-export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItemBriefDto {
-    items?: TodoItemBriefDto[] | undefined;
+export class PaginatedListOfTopicBriefDto implements IPaginatedListOfTopicBriefDto {
+    items?: TopicBriefDto[] | undefined;
     pageIndex?: number;
     totalPages?: number;
     totalCount?: number;
     hasPreviousPage?: boolean;
     hasNextPage?: boolean;
 
-    constructor(data?: IPaginatedListOfTodoItemBriefDto) {
+    constructor(data?: IPaginatedListOfTopicBriefDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -953,7 +953,7 @@ export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItem
             if (Array.isArray(_data["items"])) {
                 this.items = [] as any;
                 for (let item of _data["items"])
-                    this.items!.push(TodoItemBriefDto.fromJS(item));
+                    this.items!.push(TopicBriefDto.fromJS(item));
             }
             this.pageIndex = _data["pageIndex"];
             this.totalPages = _data["totalPages"];
@@ -963,9 +963,9 @@ export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItem
         }
     }
 
-    static fromJS(data: any): PaginatedListOfTodoItemBriefDto {
+    static fromJS(data: any): PaginatedListOfTopicBriefDto {
         data = typeof data === 'object' ? data : {};
-        let result = new PaginatedListOfTodoItemBriefDto();
+        let result = new PaginatedListOfTopicBriefDto();
         result.init(data);
         return result;
     }
@@ -986,8 +986,8 @@ export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItem
     }
 }
 
-export interface IPaginatedListOfTodoItemBriefDto {
-    items?: TodoItemBriefDto[] | undefined;
+export interface IPaginatedListOfTopicBriefDto {
+    items?: TopicBriefDto[] | undefined;
     pageIndex?: number;
     totalPages?: number;
     totalCount?: number;
@@ -995,13 +995,13 @@ export interface IPaginatedListOfTodoItemBriefDto {
     hasNextPage?: boolean;
 }
 
-export class TodoItemBriefDto implements ITodoItemBriefDto {
+export class TopicBriefDto implements ITopicBriefDto {
     id?: number;
     listId?: number;
     title?: string | undefined;
     done?: boolean;
 
-    constructor(data?: ITodoItemBriefDto) {
+    constructor(data?: ITopicBriefDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1019,9 +1019,9 @@ export class TodoItemBriefDto implements ITodoItemBriefDto {
         }
     }
 
-    static fromJS(data: any): TodoItemBriefDto {
+    static fromJS(data: any): TopicBriefDto {
         data = typeof data === 'object' ? data : {};
-        let result = new TodoItemBriefDto();
+        let result = new TopicBriefDto();
         result.init(data);
         return result;
     }
@@ -1036,18 +1036,18 @@ export class TodoItemBriefDto implements ITodoItemBriefDto {
     }
 }
 
-export interface ITodoItemBriefDto {
+export interface ITopicBriefDto {
     id?: number;
     listId?: number;
     title?: string | undefined;
     done?: boolean;
 }
 
-export class CreateTodoItemCommand implements ICreateTodoItemCommand {
+export class CreateTopicCommand implements ICreateTopicCommand {
     listId?: number;
     title?: string | undefined;
 
-    constructor(data?: ICreateTodoItemCommand) {
+    constructor(data?: ICreateTopicCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1063,9 +1063,9 @@ export class CreateTodoItemCommand implements ICreateTodoItemCommand {
         }
     }
 
-    static fromJS(data: any): CreateTodoItemCommand {
+    static fromJS(data: any): CreateTopicCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateTodoItemCommand();
+        let result = new CreateTopicCommand();
         result.init(data);
         return result;
     }
@@ -1078,17 +1078,17 @@ export class CreateTodoItemCommand implements ICreateTodoItemCommand {
     }
 }
 
-export interface ICreateTodoItemCommand {
+export interface ICreateTopicCommand {
     listId?: number;
     title?: string | undefined;
 }
 
-export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
+export class UpdateTopicCommand implements IUpdateTopicCommand {
     id?: number;
     title?: string | undefined;
     done?: boolean;
 
-    constructor(data?: IUpdateTodoItemCommand) {
+    constructor(data?: IUpdateTopicCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1105,9 +1105,9 @@ export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
         }
     }
 
-    static fromJS(data: any): UpdateTodoItemCommand {
+    static fromJS(data: any): UpdateTopicCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdateTodoItemCommand();
+        let result = new UpdateTopicCommand();
         result.init(data);
         return result;
     }
@@ -1121,19 +1121,19 @@ export class UpdateTodoItemCommand implements IUpdateTodoItemCommand {
     }
 }
 
-export interface IUpdateTodoItemCommand {
+export interface IUpdateTopicCommand {
     id?: number;
     title?: string | undefined;
     done?: boolean;
 }
 
-export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand {
+export class UpdateTopicDetailCommand implements IUpdateTopicDetailCommand {
     id?: number;
     listId?: number;
     priority?: PriorityLevel;
     note?: string | undefined;
 
-    constructor(data?: IUpdateTodoItemDetailCommand) {
+    constructor(data?: IUpdateTopicDetailCommand) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1151,9 +1151,9 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
         }
     }
 
-    static fromJS(data: any): UpdateTodoItemDetailCommand {
+    static fromJS(data: any): UpdateTopicDetailCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new UpdateTodoItemDetailCommand();
+        let result = new UpdateTopicDetailCommand();
         result.init(data);
         return result;
     }
@@ -1168,7 +1168,7 @@ export class UpdateTodoItemDetailCommand implements IUpdateTodoItemDetailCommand
     }
 }
 
-export interface IUpdateTodoItemDetailCommand {
+export interface IUpdateTopicDetailCommand {
     id?: number;
     listId?: number;
     priority?: PriorityLevel;

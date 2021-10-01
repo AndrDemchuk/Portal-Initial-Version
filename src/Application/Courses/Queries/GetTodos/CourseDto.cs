@@ -8,7 +8,7 @@ namespace BvAcademyPortal.Application.Courses.Queries.GetTodos
     {
         public CourseDto()
         {
-            Items = new List<TodoItemDto>();
+            Items = new List<TopicDto>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace BvAcademyPortal.Application.Courses.Queries.GetTodos
 
         public string Colour { get; set; }
 
-        public IList<TodoItemDto> Items { get; set; }
+        public IList<TopicDto> Items { get; set; }
     }
 }
