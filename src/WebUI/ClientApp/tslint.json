@@ -29,7 +29,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      156
     ],
     "member-access": false,
     "member-ordering": [
@@ -47,8 +47,6 @@
     "no-bitwise": true,
     "no-console": [
       true,
-      "debug",
-      "info",
       "time",
       "timeEnd",
       "trace"

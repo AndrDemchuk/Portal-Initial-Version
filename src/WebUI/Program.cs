@@ -1,7 +1,5 @@
-using BvAcademyPortal.Infrastructure.Identity;
 using BvAcademyPortal.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,14 +25,10 @@ namespace BvAcademyPortal.WebUI
 
                     if (context.Database.IsSqlServer())
                     {
-                        context.Database.Migrate();
-                    }                   
+                        await context.Database.MigrateAsync().ConfigureAwait(false);
+                    }
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
-                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    await ApplicationDbContextSeed.SeedSampleDataAsync(context).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {
