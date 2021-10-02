@@ -37,6 +37,11 @@ namespace BvAcademyPortal.WebUI
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddHttpContextAccessor();
+            services.AddCors(options =>
+           {
+               options.AddDefaultPolicy(p => p.WithOrigins(new[] { "http://localhost:4200" })
+              .AllowAnyMethod().AllowAnyHeader());
+           });
 
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
@@ -104,6 +109,7 @@ namespace BvAcademyPortal.WebUI
             });
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();

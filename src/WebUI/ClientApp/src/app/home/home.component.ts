@@ -16,6 +16,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.apiService.getCurrentAccount().subscribe();
+  }
+
+  getMe() {
     this.apiService.getCurrentAccount().subscribe();
   }
 }

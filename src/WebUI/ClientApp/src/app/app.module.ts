@@ -105,4 +105,13 @@ const routes: Routes = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  /**
+   *
+   */
+  constructor() {
+    console.log(window.location);    
+    console.log(window.location.hash);
+  }
+ }

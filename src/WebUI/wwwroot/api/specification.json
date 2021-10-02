@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/Account/current": {
+    "/api/1.0/Account/current": {
       "get": {
         "tags": [
           "Account"
@@ -31,7 +31,7 @@
         ]
       }
     },
-    "/api/Courses": {
+    "/api/1.0/Courses": {
       "get": {
         "tags": [
           "Courses"
@@ -92,7 +92,7 @@
         ]
       }
     },
-    "/api/Courses/{id}": {
+    "/api/1.0/Courses/{id}": {
       "get": {
         "tags": [
           "Courses"
@@ -214,7 +214,7 @@
         ]
       }
     },
-    "/api/Topics": {
+    "/api/1.0/Topics": {
       "get": {
         "tags": [
           "Topics"
@@ -304,7 +304,7 @@
         ]
       }
     },
-    "/api/Topics/{id}": {
+    "/api/1.0/Topics/{id}": {
       "put": {
         "tags": [
           "Topics"
@@ -390,7 +390,7 @@
         ]
       }
     },
-    "/api/Topics/UpdateItemDetails": {
+    "/api/1.0/Topics/UpdateItemDetails": {
       "put": {
         "tags": [
           "Topics"

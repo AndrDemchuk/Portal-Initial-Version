@@ -67,7 +67,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-  scopes: [],
+  // scopes: ["https://academybv.onmicrosoft.com/dev/user_impersonation", "606eb4e1-3b98-41cd-8de9-2953e844b713"],
 };
 
 /**
@@ -77,12 +77,7 @@ export const loginRequest = {
 export const protectedResources = {
   api: {
     endpoint: AppInfo.getBaseUrlStatic(),
+    // scopes: ['https://academybv.onmicrosoft.com/dev/user_impersonation', "606eb4e1-3b98-41cd-8de9-2953e844b713"],
     scopes: ['https://academybv.onmicrosoft.com/dev/user_impersonation'],
   },
-};
-
-// The current application coordinates were pre-registered in a B2C tenant.
-export const apiConfig = {
-  b2cScopes: [],
-  webApi: "https://academybv.onmicrosoft.com/dev/user_impersonation"
 };
