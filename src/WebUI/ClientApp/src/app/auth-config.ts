@@ -7,7 +7,6 @@
 
 import { LogLevel } from '@azure/msal-browser';
 import { AppInfo } from './app.info';
-import { apiConfig } from './auth-api-config';
 import { b2cPolicies } from './auth-policies';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
@@ -25,7 +24,12 @@ export const msalConfig = {
     clientId: "606eb4e1-3b98-41cd-8de9-2953e844b713", // This is the ONLY mandatory field; everything else is optional.
     authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose sign-up/sign-in user-flow as your default.
     knownAuthorities: [b2cPolicies.authorityDomain], // You must identify your tenant's domain as a known authority.
-    redirectUri: "http://localhost:6420", // You must register this URI on Azure Portal/App Registration. Defaults to "window.location.href".
+    // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
+    redirectUri: '/',
+    // Indicates the page to navigate after logout.
+    postLogoutRedirectUri: '/',
+    navigateToLoginRequestUrl: true,
+    // If "true", will navigate back to the original request location before processing the auth code response.
   },
   cache: {
     cacheLocation: "sessionStorage", // Configures cache location. "sessionStorage" is more secure, but "localStorage" gives you SSO between tabs.
@@ -63,17 +67,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-  scopes: ["openid", ...apiConfig.b2cScopes],
-};
-
-/**
- * Scopes you add here will be used to request a token from Azure AD B2C to be used for accessing a protected resource.
- * To learn more about how to work with scopes and resources, see: 
- * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
- */
- export const tokenRequest = {
-  scopes: [...apiConfig.b2cScopes],  // e.g. ["https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read"]
-  forceRefresh: false // Set this to "true" to skip a cached token and go to the server to get a new token
+  scopes: [],
 };
 
 /**
@@ -85,4 +79,10 @@ export const loginRequest = {
       endpoint: AppInfo.getBaseUrlStatic(),
       scopes: ['https://academybv.onmicrosoft.com/dev/user_impersonation'],
   },
+};
+
+// The current application coordinates were pre-registered in a B2C tenant.
+export const apiConfig = {
+  b2cScopes: [],
+  webApi: "https://academybv.onmicrosoft.com/dev/user_impersonation"
 };

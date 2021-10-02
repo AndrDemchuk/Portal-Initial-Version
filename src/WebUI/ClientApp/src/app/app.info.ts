@@ -16,5 +16,18 @@ export class AppInfo {
         this._baseUrl = url;
         return url;
     }
+
+    public getBaseUrl(): string {
+        return AppInfo.getBaseUrlStatic();
+    }
+
+
+    public getApiUrl(): string {
+        return this.getBaseUrl() + 'api/1.0/';
+    }
+
+    public getFromApi(url: string): string {
+        return this.getApiUrl() + url;
+    }
 }
 

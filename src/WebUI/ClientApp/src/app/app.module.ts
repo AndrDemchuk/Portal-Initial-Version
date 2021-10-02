@@ -12,6 +12,9 @@ import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { msalConfig, loginRequest, protectedResources } from './auth-config';
 import { MsalBroadcastService, MsalGuard, MsalGuardConfiguration, MsalInterceptor, MsalInterceptorConfiguration, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG } from '@azure/msal-angular';
+import { ApiService } from './shared/services/api.service';
+import { ApiCache } from './shared/api/silly-cache';
+import { AppInfo } from './app.info';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.
@@ -93,6 +96,9 @@ const routes: Routes = [
     MsalService,
     MsalGuard,
     MsalBroadcastService,
+    ApiService,
+    ApiCache,
+    AppInfo  
   ],
   bootstrap: [AppComponent]
 })
