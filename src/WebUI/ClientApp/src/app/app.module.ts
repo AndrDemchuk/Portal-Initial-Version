@@ -101,7 +101,7 @@ const routes: Routes = [
     MsalBroadcastService,
     ApiService,
     ApiCache,
-    AppInfo  
+    AppInfo
   ],
   bootstrap: [AppComponent]
 })
@@ -111,7 +111,7 @@ export class AppModule {
    *
    */
   constructor() {
-    console.log(window.location);    
+    console.log(window.location);
     console.log(window.location.hash);
   }
- }
+}
