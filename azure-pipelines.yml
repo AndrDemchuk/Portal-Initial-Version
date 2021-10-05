@@ -54,5 +54,5 @@ jobs:
     displayName: 'Publish Artifact'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: '$(BuildParameters.ArtifactName)'
+      ArtifactName: 'WebUI.zip'
     condition: succeededOrFailed()
