@@ -36,4 +36,3 @@ jobs:
     cd ../
     robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP 
   displayName: 'npm install builf'
-
