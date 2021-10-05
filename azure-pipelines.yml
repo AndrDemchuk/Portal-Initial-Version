@@ -38,6 +38,6 @@ jobs:
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
-      projects: 'WebUI.csproj'
+      projects: '**/WebUI.csproj'
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build projects'
