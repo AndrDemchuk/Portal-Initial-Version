@@ -41,3 +41,18 @@ jobs:
       projects: '**/WebUI.csproj'
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build projects'
+  - task: DotNetCoreCLI@2
+    displayName: Prepare artifacts
+    inputs:
+      command: publish
+      projects: '**/WebUI.csproj'
+      publishWebProjects: True
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-restore /p:DefineConstants="SPA_RAZOR_PROD_MODE"'
+      zipAfterPublish: True
+  # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: '$(BuildParameters.ArtifactName)'
+    condition: succeededOrFailed()
