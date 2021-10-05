@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-18.04' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
+  vmImage: 'windows-latest' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
 
 variables:
   solution: '**/BvAcademyPortal.sln'
