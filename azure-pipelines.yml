@@ -25,10 +25,11 @@ jobs:
   - task: UseDotNet@2
     displayName: 'Set custom dot.net version'
     inputs:
-      version: '5.0'
+      version: '5.0.x'
       includePreviewVersions: true # Required for preview versions
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGetTool'
+    condition: succeeded()
   - task: NuGetCommand@2
     displayName: 'NuGet Restore'
     inputs:
@@ -42,4 +43,4 @@ jobs:
       node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
       cd ../
       robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP   # - task: BatchScript@1
- 
+    condition: succeeded()
