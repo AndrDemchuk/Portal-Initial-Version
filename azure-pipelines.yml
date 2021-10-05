@@ -3,39 +3,43 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+# The version of the pipeline in the pushed branch is used. 
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops#branch-consideration-for-triggers-in-yaml-pipelines
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
-
+# vars
 variables:
   solution: '**/BvAcademyPortal.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  BuildParameters.ArtifactName: $(date:yyyyMMdd)$(rev:.r)
 
 jobs:
-- job: Install_dependencies 
+- job: WebApp
+  displayName: 'Build WebApp'
+  pool:
+    vmImage: 'windows-latest' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
   steps:
+  #The Microsoft-hosted agents don't include some of the older versions of the .NET Core SDK. They also don't typically include prerelease versions. If you need these kinds of SDKs on Microsoft-hosted agents, add the UseDotNet@2 task to your YAML file.
+  - task: UseDotNet@2
+    displayName: 'Set custom dot.net version'
+    inputs:
+      version: '5.0'
+      includePreviewVersions: true # Required for preview versions
   - task: NuGetToolInstaller@1
     displayName: 'Install NuGetTool'
-
-
   - task: NuGetCommand@2
+    displayName: 'NuGet Restore'
     inputs:
       restoreSolution: '$(solution)'
-    displayName: 'NuGet Restore'
-
-- job: Build_ClientApp
-  steps:
-  - task: NodeTool@0
-    displayName: 'Install Node.js'
+    condition: succeeded()
   - script: |
       cd src\WebUI\
       RMDIR "wwwroot/app" /S /Q
       cd ClientApp
-      npm install
- #     node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
- #     cd ../
- #     robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP 
-  displayName: 'npm install builf'
+      call npm install
+      node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
+      cd ../
+      robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP   # - task: BatchScript@1
+ 
