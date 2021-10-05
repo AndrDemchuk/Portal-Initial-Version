@@ -19,7 +19,7 @@ jobs:
 - job: WebApp
   displayName: 'Build WebApp'
   pool:
-    vmImage: 'windows-latest' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
+    vmImage: 'ubuntu-latest' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
   steps:
   #The Microsoft-hosted agents don't include some of the older versions of the .NET Core SDK. They also don't typically include prerelease versions. If you need these kinds of SDKs on Microsoft-hosted agents, add the UseDotNet@2 task to your YAML file.
   - task: UseDotNet@2
