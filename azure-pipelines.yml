@@ -14,29 +14,26 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-#The Microsoft-hosted agents don't include some of the older versions of the .NET Core SDK. They also don't typically include prerelease versions. If you need these kinds of SDKs on Microsoft-hosted agents, add the UseDotNet@2 task to your YAML file.
-- task: UseDotNet@2
-  inputs:
-    version: '5.0.x'
-    includePreviewVersions: true # Required for preview versions
-- task: NuGetToolInstaller@1
+jobs:
+- job: Install_dependencies 
+  steps:
+  - task: NuGetToolInstaller@1
+    displayName: 'Install NuGetTool'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-- task: BatchScript@1
-  inputs:
-    filename: 'src\WebUI\build client app.cmd'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '$(solution)'
+    displayName: 'NuGet Restore'
 
-#- task: VSTest@2
-#  inputs:
-#    platform: '$(buildPlatform)'
-#   configuration: '$(buildConfiguration)'
+- job: Build_ClientApp
+  steps:
+  - task: NodeTool@0
+    displayName: 'Install Node.js'
+  - script: |
+    npm install
+    node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
+    cd ../
+    robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP 
+  displayName: 'npm install builf'
+
