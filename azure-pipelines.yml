@@ -35,12 +35,10 @@ jobs:
     inputs:
       restoreSolution: '$(solution)'
     condition: succeeded()
-  - script: |
-      cd src\WebUI\
-      RMDIR "wwwroot/app" /S /Q
-      cd ClientApp
-      call npm install
-      node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
-      cd ../
-      robocopy ClientApp/dist wwwroot/app /S /XD .svn /XF *.scss  *.cs *.pdb *.map *.user *.csproj /NFL /NJH /NP   # - task: BatchScript@1
+  - task: VSBuild@1
+    inputs:
+      solution: '$(solution)'
+      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
     condition: succeeded()
