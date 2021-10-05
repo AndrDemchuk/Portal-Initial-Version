@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-18.04' # name of the VM image you want to use for agent https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
 
 variables:
   solution: '**/BvAcademyPortal.sln'
@@ -15,11 +15,19 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+#The Microsoft-hosted agents don't include some of the older versions of the .NET Core SDK. They also don't typically include prerelease versions. If you need these kinds of SDKs on Microsoft-hosted agents, add the UseDotNet@2 task to your YAML file.
+- task: UseDotNet@2
+  inputs:
+    version: '5.0.x'
+    includePreviewVersions: true # Required for preview versions
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+- task: BatchScript@1
+  inputs:
+    filename: 'src\WebUI\build client app.cmd'
 
 - task: VSBuild@1
   inputs:
