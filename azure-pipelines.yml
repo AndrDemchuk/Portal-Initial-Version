@@ -35,10 +35,9 @@ jobs:
     inputs:
       restoreSolution: '$(solution)'
     condition: succeeded()
-  - task: VSBuild@1
+  - task: DotNetCoreCLI@2
     inputs:
-      solution: '$(solution)'
-      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-      platform: '$(buildPlatform)'
-      configuration: '$(buildConfiguration)'
-    condition: succeeded()
+      command: 'build'
+      projects: 'src\WebUI\WebUI.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+    displayName: 'Build projects'
