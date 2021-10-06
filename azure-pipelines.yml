@@ -41,7 +41,8 @@ jobs:
       pwd
       npm install
       node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
-      rsync -avr --exclude='src/WebUI/wwwroot/app/*.scss' --exclude='src/WebUI/wwwroot/app/*.cs' --exclude='src/WebUI/wwwroot/app/*.pdb' --exclude='src/WebUI/wwwroot/app/*.map' --exclude='src/WebUI/wwwroot/app/*.user' --exclude='src/WebUI/wwwroot/app/*.csproj' src/WebUI/wwwroot/app src/WebUI/ClientApp/dist
+      ls -la
+      #rsync -avr --exclude='src/WebUI/wwwroot/app/*.scss' --exclude='src/WebUI/wwwroot/app/*.cs' --exclude='src/WebUI/wwwroot/app/*.pdb' --exclude='src/WebUI/wwwroot/app/*.map' --exclude='src/WebUI/wwwroot/app/*.user' --exclude='src/WebUI/wwwroot/app/*.csproj' src/WebUI/wwwroot/app src/WebUI/ClientApp/dist
     displayName: 'npm install and build'
   - task: DotNetCoreCLI@2
     inputs:
