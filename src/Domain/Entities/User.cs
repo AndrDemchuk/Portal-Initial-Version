@@ -3,6 +3,7 @@ using BvAcademyPortal.Domain.Enums;
 using BvAcademyPortal.Domain.Events;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BvAcademyPortal.Domain.Entities
 {
@@ -12,22 +13,32 @@ namespace BvAcademyPortal.Domain.Entities
 
         public bool IsAdmin { get; set; }
 
+        public string ProfilePhotoLink { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         public DateTime? BirthDate { get; set; }
 
+        [Required]
         public string City { get; set; }
 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        public string SkypeName { get; set; }
+        public string SocialNetworkLink { get; set; }
 
+        [Required]
         public string EducationalEstablishment { get; set; }
 
+        [Required]
         public string Faculty { get; set; }
 
+        [Required]
         public string EnglishLevel { get; set; }
 
         public virtual ICollection<CourseUsers> CourseUsers { get; set; }
