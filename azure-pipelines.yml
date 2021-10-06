@@ -41,7 +41,7 @@ jobs:
       npm install
       node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
       cd ..
-      rsync -avr --exclude='ClientApp/dist/*.scss' --exclude='ClientApp/dist/*.cs' --exclude='ClientApp/dist/*.pdb' --exclude='ClientApp/dist/*.map' --exclude='ClientApp/dist/*.user' --exclude='ClientApp/dist/*.csproj' ClientApp/dist wwwroot/app
+      rsync -avr --exclude='ClientApp/dist/.svn' --exclude='ClientApp/dist/*.scss' --exclude='ClientApp/dist/*.cs' --exclude='ClientApp/dist/*.pdb' --exclude='ClientApp/dist/*.map' --exclude='ClientApp/dist/*.user' --exclude='ClientApp/dist/*.csproj' ClientApp/dist wwwroot/app
     displayName: 'npm install and build'
   - task: DotNetCoreCLI@2
     inputs:
