@@ -10,5 +10,7 @@ namespace BvAcademyPortal.Domain.Entities
         public string Title { get; set; }
         public Colour Colour { get; set; } = Colour.White;
         public IList<Topic> Topics { get; private set; } = new List<Topic>();
+
+        public virtual ICollection<CourseUsers> CourseUsers { get; set; }
     }
 }

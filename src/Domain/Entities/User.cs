@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    class User : AuditableEntity
+    public class User : AuditableEntity
     {
         public int Id { get; set; }
 
@@ -29,5 +29,7 @@ namespace BvAcademyPortal.Domain.Entities
         public string Faculty { get; set; }
 
         public string EnglishLevel { get; set; }
+
+        public virtual ICollection<CourseUsers> CourseUsers { get; set; }
     }
 }
