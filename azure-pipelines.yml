@@ -36,6 +36,7 @@ jobs:
       restoreSolution: '$(solution)'
     condition: succeeded()
   - script: |
+      ls -la
       rm -rf wwwroot/app
       cd ClientApp
       pwd
