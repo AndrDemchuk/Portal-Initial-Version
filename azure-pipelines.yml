@@ -38,7 +38,8 @@ jobs:
   - script: |
       rm -rf wwwroot/app
       cd ClientApp
-      npm install
+      pwd
+      call npm install
       node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
       rsync -avr --exclude='wwwroot/app/*.scss' --exclude='wwwroot/app/*.cs' --exclude='wwwroot/app/*.pdb' --exclude='wwwroot/app/*.map' --exclude='wwwroot/app/*.user' --exclude='wwwroot/app/*.csproj' wwwroot/app ClientApp/dist
     displayName: 'npm install and build'
