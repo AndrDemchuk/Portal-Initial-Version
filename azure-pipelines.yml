@@ -36,13 +36,12 @@ jobs:
       restoreSolution: '$(solution)'
     condition: succeeded()
   - script: |
-      ls -la
-      rm -rf wwwroot/app
-      cd ClientApp
+      rm -rf src/WebUI/wwwroot/app
+      cd src/WebUI/ClientApp/
       pwd
-      call npm install
+      npm install
       node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
-      rsync -avr --exclude='wwwroot/app/*.scss' --exclude='wwwroot/app/*.cs' --exclude='wwwroot/app/*.pdb' --exclude='wwwroot/app/*.map' --exclude='wwwroot/app/*.user' --exclude='wwwroot/app/*.csproj' wwwroot/app ClientApp/dist
+      rsync -avr --exclude='src/WebUI/wwwroot/app/*.scss' --exclude='src/WebUI/wwwroot/app/*.cs' --exclude='src/WebUI/wwwroot/app/*.pdb' --exclude='src/WebUI/wwwroot/app/*.map' --exclude='src/WebUI/wwwroot/app/*.user' --exclude='src/WebUI/wwwroot/app/*.csproj' src/WebUI/wwwroot/app src/WebUI/ClientApp/dist
     displayName: 'npm install and build'
   - task: DotNetCoreCLI@2
     inputs:
