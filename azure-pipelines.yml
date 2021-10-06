@@ -13,7 +13,7 @@ variables:
   solution: '**/BvAcademyPortal.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  BuildParameters.ArtifactName: $(date:yyyyMMdd)$(rev:.r)
+#  BuildParameters.ArtifactName: $(date:yyyyMMdd)$(rev:.r)
 
 jobs:
 - job: WebApp
@@ -35,24 +35,33 @@ jobs:
     inputs:
       restoreSolution: '$(solution)'
     condition: succeeded()
+  - script: |
+      rm -rf wwwroot/app
+      cd ClientApp
+      npm install
+      node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --configuration production ---progress true
+      rsync -avr --exclude='wwwroot/app/*.scss' --exclude='wwwroot/app/*.cs' --exclude='wwwroot/app/*.pdb' --exclude='wwwroot/app/*.map' --exclude='wwwroot/app/*.user' --exclude='wwwroot/app/*.csproj' wwwroot/app ClientApp/dist
+    displayName: 'npm install and build'
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
       projects: '**/WebUI.csproj'
       arguments: '--configuration $(buildConfiguration)'
     displayName: 'Build projects'
+    condition: succeeded()
   - task: DotNetCoreCLI@2
     displayName: Prepare artifacts
     inputs:
       command: publish
-      projects: '**/WebUI.csproj'
+      projects: 'WebUI.csproj'
       publishWebProjects: True
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-restore /p:DefineConstants="SPA_RAZOR_PROD_MODE"'
       zipAfterPublish: True
+    condition: succeeded()
   # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'WebUI.zip'
+      ArtifactName: 'Test'
     condition: succeededOrFailed()
