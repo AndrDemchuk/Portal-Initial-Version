@@ -66,3 +66,12 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'Test'
     condition: succeededOrFailed()
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Microsoft Partner Network (ca85f927-5466-454e-8963-d6a06d3ba72e)'
+      appType: 'webAppLinux'
+      WebAppName: 'bv-academy-portal-dev'
+      packageForLinux: '$(build.ArtifactStagingDirectory)/**/WebApp.zip'
+      RuntimeStack: 'DOTNETCORE|5.0'
+      TakeAppOfflineFlag: True
