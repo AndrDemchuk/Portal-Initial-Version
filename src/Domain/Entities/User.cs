@@ -43,5 +43,7 @@ namespace BvAcademyPortal.Domain.Entities
 
         public virtual ICollection<SocialNetworkUsers> socialNetworkUsers { get; set; }
 
+        public virtual ICollection<ProgrammingLanguage> programmingLanguage { get; set; }
+
     }
 }
