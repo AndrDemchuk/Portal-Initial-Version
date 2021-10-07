@@ -13,6 +13,8 @@ namespace BvAcademyPortal.Domain.Entities
 
         public string Name { get; set; }
 
+        public string Level { get; set; }
+
         public virtual ICollection<OperatingSystemUsers> operatingSystemUsers { get; set; }
     }
 }
