@@ -64,7 +64,7 @@ jobs:
     displayName: 'Publish Artifact'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'Test'
+      ArtifactName: 'BVAcademyPortal'
     condition: succeededOrFailed()
   - task: AzureRmWebAppDeployment@4
     inputs:
@@ -72,6 +72,6 @@ jobs:
       azureSubscription: 'Microsoft Partner Network (ca85f927-5466-454e-8963-d6a06d3ba72e)'
       appType: 'webAppLinux'
       WebAppName: 'bv-academy-portal-dev'
-      packageForLinux: '$(build.ArtifactStagingDirectory)/**/WebApp.zip'
+      packageForLinux: '$(build.ArtifactStagingDirectory)/**/WebUI.zip'
       RuntimeStack: 'DOTNETCORE|5.0'
       TakeAppOfflineFlag: True
