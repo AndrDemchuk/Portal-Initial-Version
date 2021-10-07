@@ -7,14 +7,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class ProgrammingLanguage : AuditableEntity
+    public class OperatingSystem : AuditableEntity
     {
         public int Id { get; set; }
 
-        public string Language { get; set; }
+        public string Name { get; set; }
 
-        public string Level { get; set; }
-
-        public virtual ICollection<ProgrammingLanguageUsers> programmingLanguageUsers { get; set; }
+        public virtual ICollection<OperatingSystemUsers> operatingSystemUsers { get; set; }
     }
 }
