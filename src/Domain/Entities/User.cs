@@ -30,8 +30,6 @@ namespace BvAcademyPortal.Domain.Entities
         [EmailAddress]
         public string Email { get; set; }
 
-        public string SocialNetworkLink { get; set; }
-
         [Required]
         public string EducationalEstablishment { get; set; }
 
@@ -41,6 +39,9 @@ namespace BvAcademyPortal.Domain.Entities
         [Required]
         public string EnglishLevel { get; set; }
 
-        public virtual ICollection<CourseUsers> CourseUsers { get; set; }
+        public virtual ICollection<CourseUsers> courseUsers { get; set; }
+
+        public virtual ICollection<SocialNetworkUsers> socialNetworkUsers { get; set; }
+
     }
 }
