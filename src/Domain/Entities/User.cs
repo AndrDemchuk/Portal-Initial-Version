@@ -47,5 +47,8 @@ namespace BvAcademyPortal.Domain.Entities
 
         public virtual ICollection<OperatingSystemUsers> operatingSystemUsers { get; set; }
 
+        public virtual ICollection<PlatformUsers> platformUsers { get; set; }
+
+        public virtual ICollection<DatabaseUsers> databaseUsers { get; set; }
     }
 }
