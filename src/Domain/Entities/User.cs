@@ -37,7 +37,7 @@ namespace BvAcademyPortal.Domain.Entities
         public string Faculty { get; set; }
 
         [Required]
-        public string EnglishLevel { get; set; }
+        public EnglishLevel EnglishLevel { get; set; }
 
         public virtual ICollection<CourseUsers> CourseUsers { get; set; }
 
