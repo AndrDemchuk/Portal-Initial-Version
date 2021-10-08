@@ -30,6 +30,20 @@ namespace BvAcademyPortal.Infrastructure.Persistence
 
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<SocialNetwork> SocialNetworks { get; set; }
+
+        public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<SkillType> SkillTypes { get; set; }
+
+        public DbSet<CourseUsers> CoursesUsers { get; set; }
+
+        public DbSet<SkillsUsers> SkillsUsers { get; set; }
+
+        public DbSet<SocialNetworkUsers> SocialNetworskUsers { get; set; }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
