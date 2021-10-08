@@ -11,16 +11,16 @@ namespace BvAcademyPortal.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
-        public int IdCourse { get; set; }
+        public int CourseId { get; set; }
 
         public bool IsMentor { get; set; }
 
-        [ForeignKey(name: "IdUser")]
-        public virtual User user { get; set; }
+        [ForeignKey(name: "UserId")]
+        public virtual User User { get; set; }
 
-        [ForeignKey(name: "IdCourse")]
-        public virtual Course course { get; set; }
+        [ForeignKey(name: "CourseId")]
+        public virtual Course Course { get; set; }
     }
 }

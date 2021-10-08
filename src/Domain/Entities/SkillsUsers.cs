@@ -19,7 +19,7 @@ namespace BvAcademyPortal.Domain.Entities
         public int SkillId { get; set; }
 
         [ForeignKey(name: "UserId")]
-        public virtual User user { get; set; }
+        public virtual User User { get; set; }
 
         [ForeignKey(name: "SkillId")]
         public virtual Skill Skill { get; set; }

@@ -39,16 +39,10 @@ namespace BvAcademyPortal.Domain.Entities
         [Required]
         public string EnglishLevel { get; set; }
 
-        public virtual ICollection<CourseUsers> courseUsers { get; set; }
+        public virtual ICollection<CourseUsers> CourseUsers { get; set; }
 
-        public virtual ICollection<SocialNetworkUsers> socialNetworkUsers { get; set; }
+        public virtual ICollection<SocialNetworkUsers> SocialNetworkUsers { get; set; }
 
-        public virtual ICollection<ProgrammingLanguageUsers> programmingLanguageUsers { get; set; }
-
-        public virtual ICollection<OperatingSystemUsers> operatingSystemUsers { get; set; }
-
-        public virtual ICollection<PlatformUsers> platformUsers { get; set; }
-
-        public virtual ICollection<DatabaseUsers> databaseUsers { get; set; }
+        public virtual ICollection<SkillsUsers> SkillsUsers { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace BvAcademyPortal.Domain.Entities
 
         public string Link { get; set; }
 
-        public virtual ICollection<SocialNetworkUsers> socialNetworkUsers { get; set; }
+        public virtual ICollection<SocialNetworkUsers> SocialNetworkUsers { get; set; }
     }
 }

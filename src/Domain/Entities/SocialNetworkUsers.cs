@@ -12,14 +12,14 @@ namespace BvAcademyPortal.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
-        public int IdSocialNetwork { get; set; }
+        public int SocialNetworkId { get; set; }
 
-        [ForeignKey(name: "IdUser")]
-        public virtual User user { get; set; }
+        [ForeignKey(name: "UserId")]
+        public virtual User User { get; set; }
 
-        [ForeignKey(name: "IdSocialNetwork")]
-        public virtual SocialNetwork socialNetwork { get; set; }
+        [ForeignKey(name: "SocialNetworkId")]
+        public virtual SocialNetwork SocialNetwork { get; set; }
     }
 }

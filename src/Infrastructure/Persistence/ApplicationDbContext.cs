@@ -32,21 +32,17 @@ namespace BvAcademyPortal.Infrastructure.Persistence
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        public DbSet<SocialNetwork> SocialNetworks { get; set; }
 
-        public DbSet<OperatingSystem> OperatingSystems { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
-        public DbSet<Platform> Platforms { get; set; }
+        public DbSet<SkillType> SkillTypes { get; set; }
 
-        public DbSet<Database> Databases { get; set; }
+        public DbSet<CourseUsers> CoursesUsers { get; set; }
 
-        public DbSet<ProgrammingLanguageUsers> ProgrammingLanguagesUsers { get; set; }
+        public DbSet<SkillsUsers> SkillsUsers { get; set; }
 
-        public DbSet<OperatingSystemUsers> OperatingSystemsUsers { get; set; }
-
-        public DbSet<PlatformUsers> PlatformsUsers { get; set; }
-
-        public DbSet<DatabaseUsers> DatabasesUsers { get; set; }
+        public DbSet<SocialNetworkUsers> SocialNetworskUsers { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
