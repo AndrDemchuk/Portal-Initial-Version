@@ -36,7 +36,7 @@ namespace BvAcademyPortal.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
-            services.AddScoped<IProfilePhotoManager, AzureProfilePhotoUploadService>();
+            services.AddScoped<IProfilePhotoManager, LocalProfilePhotoUploadService>();
 
             //var adConfiguration = configuration.GetSection("AzureB2C");
             //var tenantId = adConfiguration.GetValue<string>("TenantId");
