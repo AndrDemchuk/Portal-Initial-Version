@@ -36,6 +36,8 @@ namespace BvAcademyPortal.Infrastructure
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
+            services.AddScoped<IProfilePhotoManager, AzureProfilePhotoUploadService>();
+
             //var adConfiguration = configuration.GetSection("AzureB2C");
             //var tenantId = adConfiguration.GetValue<string>("TenantId");
             //var audience = "https://Blackthorn-vision.com/BVMeter";

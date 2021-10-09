@@ -1,4 +1,5 @@
 ﻿using BvAcademyPortal.Application.Common.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace BvAcademyPortal.Application.Common.Interfaces
 {
     public interface IProfilePhotoManager
     {
-        Task<string> UploadAsync(ProfilePhoto profilePhoto, ProfilePhotoDetails details);
-        Task<byte[]> GetAsync(string profilePhotoPath);
+        Task<string> UploadAsync(IFormFile file, ProfilePhotoDetails details);
     }
 }

@@ -1,34 +1,31 @@
 ﻿using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Application.Common.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Infrastructure.Services
 {
     public class LocalProfilePhotoUploadService : IProfilePhotoManager
     {
-        public Task<byte[]> GetAsync(string profilePhotoPath)
+        public async Task<string> UploadAsync(IFormFile profilePhoto, ProfilePhotoDetails details)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<string> UploadAsync(ProfilePhoto profilePhoto, ProfilePhotoDetails details)
-        {
-            if(!Directory.Exists(details.Path))
+            if(!Directory.Exists(details.BlobName))
             {
-                Directory.CreateDirectory(details.Path);
+                Directory.CreateDirectory(details.BlobName);
             }
 
-            var fileName = Path.Combine(Directory.GetCurrentDirectory(), details.Path, string.Concat(Guid.NewGuid().ToString(), profilePhoto.FIleExtenstion));
+            var fileName = string.Concat(Guid.NewGuid().ToString(), Path.GetExtension(profilePhoto.FileName));
 
-            await File.WriteAllBytesAsync(fileName, profilePhoto.FileContent);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), details.BlobName, fileName);
 
-            return fileName;
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
+            {
+                await profilePhoto.CopyToAsync(fs);
+            }
+
+            return filePath;
         }
     }
 }

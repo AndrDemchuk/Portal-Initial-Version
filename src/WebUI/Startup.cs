@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using BvAcademyPortal.Application;
 using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Infrastructure;
@@ -36,7 +37,11 @@ namespace BvAcademyPortal.WebUI
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
-            services.AddScoped<IProfilePhotoManager, LocalProfilePhotoUploadService>();
+
+            //services.AddScoped(_ =>
+            //{
+            //    return new BlobServiceClient(Configuration.GetSection("StorageConfiguration").GetSection("AzureConnection").Value);
+            //});
 
             services.AddHttpContextAccessor();
             services.AddCors(options =>

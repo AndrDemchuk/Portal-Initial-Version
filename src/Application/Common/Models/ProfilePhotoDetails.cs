@@ -8,7 +8,6 @@ namespace BvAcademyPortal.Application.Common.Models
 {
     public class ProfilePhotoDetails
     {
-        //Blob or Folder name
-        public string Path { get; set;  }
+        public string BlobName { get; set;  }
     }
 }
