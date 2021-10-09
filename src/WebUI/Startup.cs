@@ -2,6 +2,7 @@ using BvAcademyPortal.Application;
 using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Infrastructure;
 using BvAcademyPortal.Infrastructure.Persistence;
+using BvAcademyPortal.Infrastructure.Services;
 using BvAcademyPortal.WebUI.Filters;
 using BvAcademyPortal.WebUI.Services;
 using FluentValidation.AspNetCore;
@@ -35,6 +36,7 @@ namespace BvAcademyPortal.WebUI
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IProfilePhotoManager, LocalProfilePhotoUploadService>();
 
             services.AddHttpContextAccessor();
             services.AddCors(options =>

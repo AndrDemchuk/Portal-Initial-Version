@@ -21,6 +21,8 @@ namespace BvAcademyPortal.WebUI.Filters
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+                { typeof(FileExtensionException), HandleForbiddenAccessException },
+                { typeof(FileSizeException), HandleForbiddenAccessException },
             };
         }
 
