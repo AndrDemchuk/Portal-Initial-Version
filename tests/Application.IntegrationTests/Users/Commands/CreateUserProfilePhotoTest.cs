@@ -25,7 +25,7 @@ namespace BvAcademyPortal.Application.IntegrationTests.Users.Commands
 
         static IEnumerable<CreateUserProfilePhotoCommand> ThrowValidationExceptionCases()
         {
-            yield return new CreateUserProfilePhotoCommand();
+            yield return new CreateUserProfilePhotoCommand() { FormFile = null, Details = null };
             yield return new CreateUserProfilePhotoCommand()
             {
                 FormFile = null,
