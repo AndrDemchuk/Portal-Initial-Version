@@ -35,10 +35,6 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUserProfilePhoto
                     .InclusiveBetween(_minSize, _maxSize)
                     .WithMessage("Ivalid file size.");
             });
-            RuleFor(c => c.Details).NotNull().DependentRules(() =>
-            {
-                RuleFor(c => c.Details.BlobName).NotEmpty();
-            });
         }
     }
 }

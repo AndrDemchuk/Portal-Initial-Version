@@ -10,6 +10,6 @@ namespace BvAcademyPortal.Application.Common.Interfaces
 {
     public interface IProfilePhotoManager
     {
-        Task<string> UploadAsync(IFormFile file, ProfilePhotoDetails details);
+        Task<string> UploadAsync(IFormFile file);
     }
 }

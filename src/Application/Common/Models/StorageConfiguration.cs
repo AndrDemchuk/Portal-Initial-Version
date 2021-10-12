@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Common.Models
 {
-    public class ProfilePhotoDetails
+    public class StorageConfiguration
     {
-        public string BlobName { get; set;  }
+        public string AzureConnection { get; set; }
+        public string BlobName { get; set; }
     }
 }

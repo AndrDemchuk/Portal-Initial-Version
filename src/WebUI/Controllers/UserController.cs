@@ -13,24 +13,14 @@ namespace BvAcademyPortal.WebUI.Controllers
     //[Authorize]
     public class UserController : ApiControllerBase
     {
-        private readonly ProfilePhotoDetails _profilePhotoDetails;
-
-        public UserController(IConfiguration configuration)
-        {
-            _profilePhotoDetails = new ProfilePhotoDetails() 
-            { 
-                BlobName = configuration.GetSection("StorageConfiguration").GetSection("BlobName").Value 
-            };
-        }
-
-        [Route("UploadImage")]
+        [Route("{id}/UploadImage")]
         [HttpPost]
-        public async Task<IActionResult> Upload([FromForm]IFormFile file)
+        public async Task<IActionResult> Upload(int id, [FromForm]IFormFile file)
         {
             var profilePhotoLink = await Mediator.Send(new CreateUserProfilePhotoCommand()
             {
                 FormFile = file,
-                Details = _profilePhotoDetails
+                UserId = id
             });
 
             return Ok(profilePhotoLink);

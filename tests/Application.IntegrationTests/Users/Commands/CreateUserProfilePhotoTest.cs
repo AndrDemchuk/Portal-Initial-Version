@@ -25,26 +25,22 @@ namespace BvAcademyPortal.Application.IntegrationTests.Users.Commands
 
         static IEnumerable<CreateUserProfilePhotoCommand> ThrowValidationExceptionCases()
         {
-            yield return new CreateUserProfilePhotoCommand() { FormFile = null, Details = null };
+            yield return new CreateUserProfilePhotoCommand() { FormFile = null};
             yield return new CreateUserProfilePhotoCommand()
             {
-                FormFile = null,
-                Details = new ProfilePhotoDetails() { BlobName = "testname"}
+                FormFile = null
             };
             yield return new CreateUserProfilePhotoCommand() 
             { 
-                FormFile = new TestUserProfilePhoto() { FileName = "testname.jpg", Length = 5 * 1_048_576 }, 
-                Details = new ProfilePhotoDetails() { BlobName = "testname"}
+                FormFile = new TestUserProfilePhoto() { FileName = "testname.jpg", Length = 5 * 1_048_576 }
             };
             yield return new CreateUserProfilePhotoCommand()
             {
-                FormFile = new TestUserProfilePhoto() { FileName = "testname.jpeg", Length = 0 * 1_048_576 },
-                Details = new ProfilePhotoDetails() { BlobName = "testname" }
+                FormFile = new TestUserProfilePhoto() { FileName = "testname.jpeg", Length = 0 * 1_048_576 }
             };
             yield return new CreateUserProfilePhotoCommand()
             {
-                FormFile = new TestUserProfilePhoto() { FileName = "testname.jepg", Length = 5 * 1_048_576 },
-                Details = new ProfilePhotoDetails() { BlobName = "" }
+                FormFile = new TestUserProfilePhoto() { FileName = "testname.jepg", Length = 5 * 1_048_576 }
             };
         }
 
