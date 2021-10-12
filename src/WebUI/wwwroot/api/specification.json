@@ -439,12 +439,24 @@
         ]
       }
     },
-    "/api/1.0/User/UploadImage": {
+    "/api/1.0/User/{id}/UploadImage": {
       "post": {
         "tags": [
           "User"
         ],
         "operationId": "User_Upload",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {

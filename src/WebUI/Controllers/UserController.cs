@@ -13,14 +13,21 @@ namespace BvAcademyPortal.WebUI.Controllers
     //[Authorize]
     public class UserController : ApiControllerBase
     {
-        [Route("{id}/UploadImage")]
+        private readonly ICurrentUserService _currentUserService;
+
+        public UserController(ICurrentUserService currentUserService)
+        {
+            _currentUserService = currentUserService;
+        }
+
+        [Route("UploadImage")]
         [HttpPost]
-        public async Task<IActionResult> Upload(int id, [FromForm]IFormFile file)
+        public async Task<IActionResult> Upload([FromForm]IFormFile file)
         {
             var profilePhotoLink = await Mediator.Send(new CreateUserProfilePhotoCommand()
             {
                 FormFile = file,
-                UserId = id
+                UserId = _currentUserService.UserId
             });
 
             return Ok(profilePhotoLink);

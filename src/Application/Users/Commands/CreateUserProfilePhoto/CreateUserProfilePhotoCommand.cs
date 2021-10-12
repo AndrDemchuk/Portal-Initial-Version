@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUserProfilePhoto
     public class CreateUserProfilePhotoCommand : IRequest<string>
     {
         public IFormFile FormFile { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 
     public class CreateUserProfilePhotoCommandHandler : IRequestHandler<CreateUserProfilePhotoCommand, string>
@@ -22,7 +23,8 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUserProfilePhoto
         private readonly IProfilePhotoManager _profilePhotoManager;
         private readonly IApplicationDbContext _context;
 
-        public CreateUserProfilePhotoCommandHandler(IProfilePhotoManager profilePhotoManager, IApplicationDbContext context)
+        public CreateUserProfilePhotoCommandHandler(IProfilePhotoManager profilePhotoManager,
+            IApplicationDbContext context)
         {
             _profilePhotoManager = profilePhotoManager;
             _context = context;
@@ -30,7 +32,9 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUserProfilePhoto
 
         public async Task<string> Handle(CreateUserProfilePhotoCommand request, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FindAsync(request.UserId);
+            var userId = int.Parse(request.UserId);
+            
+            var user = await _context.Users.FindAsync(userId);
 
             if(user == null)
             {
