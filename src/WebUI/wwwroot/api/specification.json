@@ -438,6 +438,65 @@
           }
         ]
       }
+    },
+    "/api/1.0/User/UploadImage": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_Upload",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "ContentType": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ContentDisposition": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "Headers": {
+                    "nullable": true,
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/IHeaderDictionary"
+                      }
+                    ]
+                  },
+                  "Length": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "Name": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "FileName": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -673,6 +732,24 @@
           2,
           3
         ]
+      },
+      "IHeaderDictionary": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "Item": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ContentLength": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        }
       }
     },
     "securitySchemes": {
