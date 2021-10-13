@@ -1,7 +1,9 @@
+using Azure.Storage.Blobs;
 using BvAcademyPortal.Application;
 using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Infrastructure;
 using BvAcademyPortal.Infrastructure.Persistence;
+using BvAcademyPortal.Infrastructure.Services;
 using BvAcademyPortal.WebUI.Filters;
 using BvAcademyPortal.WebUI.Services;
 using FluentValidation.AspNetCore;
@@ -35,6 +37,11 @@ namespace BvAcademyPortal.WebUI
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
+
+            //services.AddScoped(_ =>
+            //{
+            //    return new BlobServiceClient(Configuration.GetSection("StorageConfiguration").GetSection("AzureConnection").Value);
+            //});
 
             services.AddHttpContextAccessor();
             services.AddCors(options =>

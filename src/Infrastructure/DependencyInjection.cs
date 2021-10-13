@@ -1,4 +1,5 @@
 ﻿using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.Common.Models;
 using BvAcademyPortal.Infrastructure.Files;
 using BvAcademyPortal.Infrastructure.Identity;
 using BvAcademyPortal.Infrastructure.Persistence;
@@ -35,6 +36,11 @@ namespace BvAcademyPortal.Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
+
+            //User image storage
+            services.AddScoped<IProfilePhotoManager, LocalProfilePhotoUploadService>();
+
+            services.Configure<StorageConfiguration>(configuration.GetSection("StorageConfiguration"));
 
             //var adConfiguration = configuration.GetSection("AzureB2C");
             //var tenantId = adConfiguration.GetValue<string>("TenantId");
