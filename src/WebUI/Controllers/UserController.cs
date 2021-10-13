@@ -17,9 +17,9 @@ namespace BvAcademyPortal.WebUI.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<TodosVm>> Get()
+        public async Task<ActionResult<UsersVm>> Get()
         {
-            return await Mediator.Send(new GetTodosQuery());
+            return await Mediator.Send(new GetUsersQuery());
         }
 
         [HttpPost]

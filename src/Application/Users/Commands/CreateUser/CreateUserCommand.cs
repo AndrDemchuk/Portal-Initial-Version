@@ -24,11 +24,6 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUser
         public string EducationalEstablishment { get; set; }
         public string Faculty { get; set; }
         public EnglishLevel EnglishLevel { get; set; }
-
-        public virtual ICollection<CourseUsers> CourseUsers { get; set; }
-        public virtual ICollection<SocialNetworkUsers> SocialNetworkUsers { get; set; }
-
-        public virtual ICollection<SkillsUsers> SkillsUsers { get; set; }
     }
 
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
@@ -54,9 +49,6 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUser
             entity.EducationalEstablishment = request.EducationalEstablishment;
             entity.Faculty = request.Faculty;
             entity.EnglishLevel = request.EnglishLevel;
-            entity.SocialNetworkUsers = request.SocialNetworkUsers;
-            entity.CourseUsers = request.CourseUsers;
-            entity.SkillsUsers = request.SkillsUsers;
 
 
             _context.Users.Add(entity);

@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Users.Queries.GetTodos
 {
-    public class GetTodosQuery : IRequest<TodosVm>
+    public class GetUsersQuery : IRequest<UsersVm>
     {
 
     }
-    public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, TodosVm>
+    public class GetTodosQueryHandler : IRequestHandler<GetUsersQuery, UsersVm>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -29,9 +29,9 @@ namespace BvAcademyPortal.Application.Users.Queries.GetTodos
         }
 
 
-        public async Task<TodosVm> Handle(GetTodosQuery request, CancellationToken cancellationToken)
+        public async Task<UsersVm> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            return new TodosVm
+            return new UsersVm
             {
                 Lists = await _context.Users
                     .AsNoTracking()

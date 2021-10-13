@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Users.Queries.GetTodos
 {
-    public class TodosVm
+    public class UsersVm
     {
-        public IList<UserDto> Lists { get; set; }
+        public List<UserDto> Lists { get; set; }
     }
 }

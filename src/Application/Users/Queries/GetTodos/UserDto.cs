@@ -11,6 +11,7 @@ namespace BvAcademyPortal.Application.Users.Queries.GetTodos
 {
     public class UserDto: IMapFrom<User>
     {
+        public int Id { get; set; }
         public bool IsAdmin { get; set; }
 
         public string ProfilePhotoLink { get; set; }
