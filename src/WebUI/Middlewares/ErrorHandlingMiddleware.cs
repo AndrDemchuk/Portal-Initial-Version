@@ -33,7 +33,7 @@ namespace BvAcademyPortal.WebUI.Middlewares
             }
         }
 
-        private  Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var response = context.Response;
             response.ContentType = "application/json";
@@ -42,20 +42,24 @@ namespace BvAcademyPortal.WebUI.Middlewares
             {
                 case ForbiddenAccessException e:
                     response.StatusCode = (int)HttpStatusCode.Forbidden;
+                    _logger.LogError($"A new ForbiddenAccessException has been thrown: {e}");
                     break;
                 case NotFoundException e:
                     response.StatusCode = (int)HttpStatusCode.NotFound;
+                    _logger.LogError($"A new NotFoundException has been thrown: {e}");
                     break;
                 case ValidationException e:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    _logger.LogError($"A new ValidationException has been thrown: {e}");
                     break;
                 default:
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    _logger.LogError($"A new InternalServerError occured: {exception}");
                     break;
             }
 
             var result = JsonSerializer.Serialize(new { message = exception?.Message });
-            return response.WriteAsync(result);
+            await response.WriteAsync(result);
         }
     }
 }
