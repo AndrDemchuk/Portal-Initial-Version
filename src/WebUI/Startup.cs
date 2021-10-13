@@ -5,6 +5,7 @@ using BvAcademyPortal.Infrastructure;
 using BvAcademyPortal.Infrastructure.Persistence;
 using BvAcademyPortal.Infrastructure.Services;
 using BvAcademyPortal.WebUI.Filters;
+using BvAcademyPortal.WebUI.Middlewares;
 using BvAcademyPortal.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -118,6 +119,7 @@ namespace BvAcademyPortal.WebUI
             app.UseRouting();
             app.UseCors();
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
