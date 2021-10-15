@@ -246,11 +246,14 @@
         ],
         "operationId": "SkillUsers_Create",
         "requestBody": {
-          "x-name": "command",
+          "x-name": "list",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSkillUserCommand"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SkillUserCreationDto"
+                }
               }
             }
           },
@@ -263,13 +266,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/Topics": {
@@ -724,15 +735,11 @@
           }
         }
       },
-      "CreateSkillUserCommand": {
+      "SkillUserCreationDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
           "skillId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
             "type": "integer",
             "format": "int32"
           },

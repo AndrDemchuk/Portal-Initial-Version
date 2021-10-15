@@ -1,4 +1,5 @@
-﻿using BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUser;
+﻿using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,21 @@ namespace BvAcademyPortal.WebUI.Controllers
     [Authorize]
     public class SkillUsersController : ApiControllerBase
     {
-        [HttpPost]
-        public async Task<ActionResult<int>> Create(CreateSkillUserCommand command)
+        private readonly ICurrentUserService _currentUser;
+
+        public SkillUsersController(ICurrentUserService currentUser)
         {
-            return await Mediator.Send(command);
+            _currentUser = currentUser;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<int>>> Create(IEnumerable<SkillUserCreationDto> list)
+        {
+            return await Mediator.Send(new CreateSkillUsersCommand() 
+            { 
+                List = list, 
+                UserId = _currentUser.UserId
+             });
         }
     }
 }
