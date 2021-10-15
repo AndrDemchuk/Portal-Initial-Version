@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="SkillTypes\Commands\" />
+    <Folder Include="SkillUsers\Queries\" />
     <Folder Include="Users\Queries\" />
   </ItemGroup>
 

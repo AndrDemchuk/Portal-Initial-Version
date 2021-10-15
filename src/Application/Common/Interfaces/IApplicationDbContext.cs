@@ -12,6 +12,7 @@ namespace BvAcademyPortal.Application.Common.Interfaces
         DbSet<User> Users { get; set; }
         DbSet<SkillType> SkillTypes { get; set; }
         DbSet<Skill> Skills { get; set; }
+        DbSet<SkillUser> SkillUsers { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
