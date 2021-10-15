@@ -43,6 +43,6 @@ namespace BvAcademyPortal.Domain.Entities
 
         public virtual ICollection<SocialNetworkUsers> SocialNetworkUsers { get; set; }
 
-        public virtual ICollection<SkillsUsers> SkillsUsers { get; set; }
+        public virtual ICollection<SkillUser> SkillsUsers { get; set; }
     }
 }

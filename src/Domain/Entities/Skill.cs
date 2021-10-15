@@ -10,10 +10,12 @@ namespace BvAcademyPortal.Domain.Entities
     public class Skill : AuditableEntity
     {
         public int Id { get; set; }
+        public string Name { get; set; }
 
         public int SkillTypeId { get; set; }
 
         [ForeignKey(name: "SkillTypeId")]
         public SkillType SkillType { get; set; }
+        public ICollection<SkillUser> SkillsUsers { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BvAcademyPortal.Domain.Entities
 {
     
-    public class SkillsUsers : AuditableEntity
+    public class SkillUser : AuditableEntity
     {
         public int Id { get; set; }
 
