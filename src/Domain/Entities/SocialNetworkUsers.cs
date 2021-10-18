@@ -16,10 +16,10 @@ namespace BvAcademyPortal.Domain.Entities
 
         public int SocialNetworkId { get; set; }
 
-        [ForeignKey(name: "UserId")]
+        [ForeignKey(name: nameof(UserId))]
         public virtual User User { get; set; }
 
-        [ForeignKey(name: "SocialNetworkId")]
+        [ForeignKey(name: nameof(SocialNetworkId))]
         public virtual SocialNetwork SocialNetwork { get; set; }
     }
 }

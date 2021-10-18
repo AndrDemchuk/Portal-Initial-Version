@@ -22,12 +22,12 @@ namespace BvAcademyPortal.Application.IntegrationTests.SkillUsers.Commands
 
         static IEnumerable<CreateSkillUsersCommand> ThrowValidationExceptionCases()
         {
-            yield return new CreateSkillUsersCommand() { List = null, UserId = null };
-            yield return new CreateSkillUsersCommand() { List = null, UserId = "0" };
-            yield return new CreateSkillUsersCommand() { List = null, UserId = "id" };
+            yield return new CreateSkillUsersCommand() { UserSkills = null, UserId = null };
+            yield return new CreateSkillUsersCommand() { UserSkills = null, UserId = "0" };
+            yield return new CreateSkillUsersCommand() { UserSkills = null, UserId = "id" };
             yield return new CreateSkillUsersCommand() 
             { 
-                List = new List<SkillUserCreationDto> 
+                UserSkills = new List<SkillUserCreationDto> 
                 {
                     new SkillUserCreationDto() {SkillId = 0, SkillLevel = 0},
                     new SkillUserCreationDto() {SkillId = 0, SkillLevel = (SkillLevel)1},

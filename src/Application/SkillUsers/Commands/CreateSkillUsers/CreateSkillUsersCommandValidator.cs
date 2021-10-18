@@ -11,9 +11,9 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
     {
         public CreateSkillUsersCommandValidator()
         {
-            RuleFor(c => c.List).NotEmpty().DependentRules(() => 
+            RuleFor(c => c.UserSkills).NotEmpty().DependentRules(() => 
             {
-                RuleForEach(c => c.List).SetValidator(new SkillUserCreationDtoValidator());
+                RuleForEach(c => c.UserSkills).SetValidator(new SkillUserCreationDtoValidator());
             });
             RuleFor(c => c.UserId).NotEmpty().DependentRules(() =>
             {

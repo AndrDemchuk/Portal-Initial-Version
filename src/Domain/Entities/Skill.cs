@@ -14,7 +14,7 @@ namespace BvAcademyPortal.Domain.Entities
 
         public int SkillTypeId { get; set; }
 
-        [ForeignKey(name: "SkillTypeId")]
+        [ForeignKey(name: nameof(SkillTypeId))]
         public SkillType SkillType { get; set; }
         public ICollection<SkillUser> SkillsUsers { get; set; }
     }

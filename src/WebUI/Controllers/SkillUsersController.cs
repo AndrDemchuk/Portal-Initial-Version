@@ -21,11 +21,11 @@ namespace BvAcademyPortal.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<int>>> Create(IEnumerable<SkillUserCreationDto> list)
+        public async Task<ActionResult<List<int>>> Create(IReadOnlyCollection<SkillUserCreationDto> list)
         {
             return await Mediator.Send(new CreateSkillUsersCommand() 
             { 
-                List = list, 
+                UserSkills = list, 
                 UserId = _currentUser.UserId
              });
         }

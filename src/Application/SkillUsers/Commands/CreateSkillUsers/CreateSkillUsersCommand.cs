@@ -2,10 +2,7 @@
 using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Domain.Entities;
 using MediatR;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +10,7 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
 {
     public class CreateSkillUsersCommand: IRequest<List<int>>
     {
-        public IEnumerable<SkillUserCreationDto> List { get; set; }
+        public IReadOnlyCollection<SkillUserCreationDto> UserSkills { get; set; }
         public string UserId { get; set; }
     }
 
@@ -26,27 +23,26 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
             List<int> ids = new();
 
             var userId = int.Parse(request.UserId);
-            var user = _context.Users.Where(u => u.Id == userId);
+            var user = await _context.Users.FindAsync(userId);
 
             if(user == null)
             {
                 throw new NotFoundException(nameof(User), request.UserId);
             }
 
-            foreach(var c in request.List)
+            foreach(var skillUser in request.UserSkills)
             {
-                var skill = _context.Skills.Where(s => s.Id == c.SkillId).SingleOrDefault();
-
+                var skill = await _context.Skills.FindAsync(skillUser.SkillId);
                 if(skill == null)
                 {
-                    throw new NotFoundException(nameof(Skill), c.SkillId);
+                    throw new NotFoundException(nameof(Skill), skillUser.SkillId);
                 }
 
                 var entity = new SkillUser
                 {
-                    SkillId = c.SkillId,
+                    SkillId = skillUser.SkillId,
                     UserId = userId,
-                    Level = c.SkillLevel
+                    Level = skillUser.SkillLevel
                 };
 
                 await _context.SkillUsers.AddAsync(entity, cancellationToken);
