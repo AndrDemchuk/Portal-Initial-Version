@@ -20,7 +20,7 @@ namespace BvAcademyPortal.Domain.Entities
         [ForeignKey(name: nameof(UserId))]
         public virtual User User { get; set; }
 
-        [ForeignKey(name: nameof(CourseId)]
+        [ForeignKey(name: nameof(CourseId))]
         public virtual Course Course { get; set; }
     }
 }
