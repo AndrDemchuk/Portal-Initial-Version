@@ -18,6 +18,11 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
     {
         private readonly IApplicationDbContext _context;
 
+        public CreateSkillUsersCommandHandler(IApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<List<int>> Handle(CreateSkillUsersCommand request, CancellationToken cancellationToken)
         {
             List<int> ids = new();
