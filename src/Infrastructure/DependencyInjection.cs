@@ -38,7 +38,7 @@ namespace BvAcademyPortal.Infrastructure
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
 
             //User image storage
-            services.AddScoped<IProfilePhotoManager, LocalProfilePhotoUploadService>();
+            services.AddScoped<IProfilePhotoManager, AzureProfilePhotoUploadService>();
 
             services.Configure<StorageConfiguration>(configuration.GetSection("StorageConfiguration"));
 

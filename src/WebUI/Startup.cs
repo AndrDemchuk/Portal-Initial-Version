@@ -38,10 +38,10 @@ namespace BvAcademyPortal.WebUI
 
             services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
-            //services.AddScoped(_ =>
-            //{
-            //    return new BlobServiceClient(Configuration.GetSection("StorageConfiguration").GetSection("AzureConnection").Value);
-            //});
+            services.AddScoped(_ =>
+            {
+                return new BlobServiceClient(Configuration.GetSection("StorageConfiguration").GetSection("AzureConnection").Value);
+            });
 
             services.AddHttpContextAccessor();
             services.AddCors(options =>
