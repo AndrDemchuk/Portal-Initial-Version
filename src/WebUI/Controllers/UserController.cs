@@ -19,6 +19,7 @@ namespace BvAcademyPortal.WebUI.Controllers
     {
         private readonly ICurrentUserService _currentUserService;
 
+
         public UserController(ICurrentUserService currentUserService)
         {
             _currentUserService = currentUserService;

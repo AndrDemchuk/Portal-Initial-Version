@@ -23,12 +23,27 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "JWT": []
+        }
+      }
+    },
+    "/api/1.0/Account": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_GetUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserVm"
+                }
+              }
+            }
           }
-        ]
+        }
       }
     },
     "/api/1.0/Courses": {
@@ -686,6 +701,41 @@
             "format": "int32"
           },
           "note": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GetUserVm": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "informationsOfUser": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UserShortDto"
+            }
+          }
+        }
+      },
+      "UserShortDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "profilePhotoLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
             "type": "string",
             "nullable": true
           }
