@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.IntegrationTests.Users.Commands
 {
-    public class CreateUserProfilePhotoTest
+    public class CreateUserProfilePhotoTest: TestBase
     {
         [TestCaseSource(nameof(ThrowValidationExceptionCases))]
         public void ShouldThrowValidationException(CreateUserProfilePhotoCommand command)

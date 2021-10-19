@@ -35,7 +35,7 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUserProfilePhoto
                     .InclusiveBetween(_minSize, _maxSize)
                     .WithMessage("Ivalid file size.");
             });
-            RuleFor(c => c.UserId).NotNull().DependentRules(() =>
+            RuleFor(c => c.UserId).NotEmpty().DependentRules(() =>
             {
                 RuleFor(c => c.UserId).Must(id => int.TryParse(id, out int _)).WithMessage("Invalid user id");
             });

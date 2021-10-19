@@ -40,7 +40,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence
 
         public DbSet<CourseUsers> CoursesUsers { get; set; }
 
-        public DbSet<SkillsUsers> SkillsUsers { get; set; }
+        public DbSet<SkillUser> SkillUsers { get; set; }
 
         public DbSet<SocialNetworkUsers> SocialNetworskUsers { get; set; }
 
