@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Users.Queries.GetTodos
 {
-    public class GetUserQuery:IRequest<GetUserVm>
+    public class GetUserQuery:IRequest<UserShortDto>
     {
         public string UserId { get; set; }
     }
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, GetUserVm>
+    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserShortDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -29,24 +29,24 @@ namespace BvAcademyPortal.Application.Users.Queries.GetTodos
             _mapper = mapper;
         }
 
-        public async Task<GetUserVm> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<UserShortDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var userId = int.Parse(request.UserId);
 
             var user = await _context.Users.FindAsync(userId);
-
+            
+            
             if (user == null)
             {
                 throw new NotFoundException(nameof(User), request.UserId);
             }
-            
-            return new GetUserVm
-            {
-                InformationsOfUser = await _context.Users
-                    .Where(p=>p.Id.Equals(userId))
-                    .Select(p => new UserShortDto { ProfilePhotoLink = p.ProfilePhotoLink, FirstName = p.FirstName, LastName = p.LastName, Email = p.Email })
-                    .ToListAsync(cancellationToken)
-            };
+
+            var userInfo = new UserShortDto();
+            userInfo.ProfilePhotoLink = user.ProfilePhotoLink;
+            userInfo.FirstName = user.FirstName;
+            userInfo.LastName = user.LastName;
+            userInfo.Email = user.Email;
+            return userInfo;
         }
     }
 }

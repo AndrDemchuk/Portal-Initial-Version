@@ -43,7 +43,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserVm"
+                  "$ref": "#/components/schemas/UserShortDto"
                 }
               }
             }
@@ -484,7 +484,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -515,7 +520,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/User/{id}": {
@@ -560,7 +570,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -591,7 +606,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/User/UploadImage": {
@@ -650,7 +670,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     }
   },
@@ -741,19 +766,6 @@
           "note": {
             "type": "string",
             "nullable": true
-          }
-        }
-      },
-      "GetUserVm": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "informationsOfUser": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "$ref": "#/components/schemas/UserShortDto"
-            }
           }
         }
       },
