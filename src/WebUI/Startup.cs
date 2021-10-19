@@ -97,6 +97,7 @@ namespace BvAcademyPortal.WebUI
             }
             else
             {
+                app.UseMiddleware<ErrorHandlingMiddleware>();
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
@@ -119,7 +120,7 @@ namespace BvAcademyPortal.WebUI
             app.UseRouting();
             app.UseCors();
 
-            app.UseMiddleware<ErrorHandlingMiddleware>();
+            //app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

@@ -51,7 +51,7 @@ namespace BvAcademyPortal.WebUI.Middlewares
                             Code = (int)HttpStatusCode.Forbidden,
                             Details = e.InnerException.Message
                         }
-                        );
+                        );                    
                     //response.StatusCode = (int)HttpStatusCode.Forbidden;
                     _logger.LogError($"A new ForbiddenAccessException has been thrown: {e}");
                     break;
