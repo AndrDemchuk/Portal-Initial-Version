@@ -13,32 +13,31 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Users.Queries.GetTodos
 {
-    public class GetUsersQuery : IRequest<UsersVm>
+    public class GetUsersQuery : IRequest<List<UserDto>>
     {
 
     }
-    public class GetTodosQueryHandler : IRequestHandler<GetUsersQuery, UsersVm>
+    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, List<UserDto>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
-
-        public GetTodosQueryHandler(IApplicationDbContext context, IMapper mapper)
+        
+        public GetUsersQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
 
-        public async Task<UsersVm> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserDto>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            return new UsersVm
-            {
-                Lists = await _context.Users
+            var users = new List<UserDto>();
+            users = await _context.Users
                     .AsNoTracking()
                     .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                     .OrderBy(t => t.FirstName)
-                    .ToListAsync(cancellationToken)
-            };
+                    .ToListAsync(cancellationToken);
+            return users;
         }
     }
 }

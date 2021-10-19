@@ -9,7 +9,7 @@ namespace BvAcademyPortal.Application.Common.Interfaces
     {
         DbSet<Course> Courses { get; set; }
         DbSet<Topic> Topics { get; set; }
-        public DbSet<User> Users { get; set; }
+        DbSet<User> Users { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
