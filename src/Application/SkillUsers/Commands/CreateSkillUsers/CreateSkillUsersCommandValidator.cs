@@ -27,7 +27,7 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
         public SkillUserCreationDtoValidator()
         {
             RuleFor(s => s.SkillLevel).IsInEnum();
-            RuleFor(s => s.SkillId).InclusiveBetween(0, int.MaxValue);
+            RuleFor(s => s.SkillId).GreaterThan(0);
         }
     }
 }
