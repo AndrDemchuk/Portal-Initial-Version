@@ -13,9 +13,9 @@ namespace BvAcademyPortal.WebUI.Controllers
     public class SkillTypesController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<SkillTypesVm>> Get()
+        public async Task<ActionResult<IReadOnlyCollection<SkillTypeDto>>> Get()
         {
-            return await Mediator.Send(new GetSkillTypesQuery());
+            return Ok(await Mediator.Send(new GetSkillTypesQuery()));
         }
     }
 }

@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.SkillTypes.Queries
 {
-    public class GetSkillTypesQuery: IRequest<SkillTypesVm>
+    public class GetSkillTypesQuery: IRequest<IReadOnlyCollection<SkillTypeDto>>
     {
     }
 
-    public class GetSkillTypesQueryHandler : IRequestHandler<GetSkillTypesQuery, SkillTypesVm>
+    public class GetSkillTypesQueryHandler : IRequestHandler<GetSkillTypesQuery, IReadOnlyCollection<SkillTypeDto>>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -27,15 +27,12 @@ namespace BvAcademyPortal.Application.SkillTypes.Queries
             _mapper = mapper;
         }
 
-        public async Task<SkillTypesVm> Handle(GetSkillTypesQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyCollection<SkillTypeDto>> Handle(GetSkillTypesQuery request, CancellationToken cancellationToken)
         {
-            return new SkillTypesVm
-            {
-                SkillTypes = await _context.SkillTypes
+            return await _context.SkillTypes
                 .AsNoTracking()
                 .ProjectTo<SkillTypeDto>(_mapper.ConfigurationProvider)
-                .ToListAsync()
-            };
+                .ToListAsync();
         }
     }
 }
