@@ -2,7 +2,10 @@
 using BvAcademyPortal.Application.Common.Interfaces;
 using BvAcademyPortal.Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,6 +29,9 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
         public async Task<List<int>> Handle(CreateSkillUsersCommand request, CancellationToken cancellationToken)
         {
             List<int> ids = new();
+            IReadOnlyCollection<int> skillsIds = await _context.Skills.AsNoTracking()
+                                                                        .Select(s => s.Id)
+                                                                        .ToListAsync();
 
             var userId = int.Parse(request.UserId);
             var user = await _context.Users.FindAsync(userId);
@@ -37,8 +43,7 @@ namespace BvAcademyPortal.Application.SkillUsers.Commands.CreateSkillUsers
 
             foreach(var skillUser in request.UserSkills)
             {
-                var skill = await _context.Skills.FindAsync(skillUser.SkillId);
-                if(skill == null)
+                if(!skillsIds.Contains(skillUser.SkillId))
                 {
                     throw new NotFoundException(nameof(Skill), skillUser.SkillId);
                 }
