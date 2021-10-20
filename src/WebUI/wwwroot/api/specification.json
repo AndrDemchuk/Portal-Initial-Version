@@ -214,6 +214,27 @@
         ]
       }
     },
+    "/error": {
+      "get": {
+        "tags": [
+          "Error"
+        ],
+        "operationId": "Error_Error",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/1.0/Topics": {
       "get": {
         "tags": [
