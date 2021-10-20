@@ -5,7 +5,6 @@ using BvAcademyPortal.Infrastructure;
 using BvAcademyPortal.Infrastructure.Persistence;
 using BvAcademyPortal.Infrastructure.Services;
 using BvAcademyPortal.WebUI.Filters;
-using BvAcademyPortal.WebUI.Middlewares;
 using BvAcademyPortal.WebUI.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
