@@ -119,7 +119,6 @@ namespace BvAcademyPortal.WebUI
             app.UseRouting();
             app.UseCors();
 
-            //app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
