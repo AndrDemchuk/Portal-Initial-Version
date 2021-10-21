@@ -52,6 +52,8 @@
   <ItemGroup>
     <Folder Include="ClientApp\dist\" />
     <Content Include="ClientApp\dist\**\*" />
+    <Folder Include="Middlewares\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
