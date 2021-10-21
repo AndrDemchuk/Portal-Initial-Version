@@ -1,5 +1,8 @@
 ﻿
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.Users.Queries.GetTodos;
 using BvAcademyPortal.Domain.Entities;
 using BvAcademyPortal.Domain.Enums;
 using MediatR;
@@ -29,16 +32,20 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
         private readonly IApplicationDbContext _context;
+        private readonly IMapper _maper;
 
-        public CreateUserCommandHandler(IApplicationDbContext context)
+        public CreateUserCommandHandler(IApplicationDbContext context, IMapper maper)
         {
             _context = context;
+            _maper = maper;
+
         }
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var entity = new User();
+            //var entity = (User)_context.Users.ProjectTo<User>(_maper.ConfigurationProvider);
 
+            var entity = new User();
             entity.IsAdmin = request.IsAdmin;
             entity.ProfilePhotoLink = request.ProfilePhotoLink;
             entity.FirstName = request.FirstName;

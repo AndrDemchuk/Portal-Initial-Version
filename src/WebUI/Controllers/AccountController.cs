@@ -22,7 +22,6 @@ namespace BvAcademyPortal.WebUI.Controllers
         public async Task<ActionResult<UserShortDto>> GetUser()
         {
             return await Mediator.Send(new GetUserQuery { UserId = _currentUser.UserId });
-
         }
 
     }
