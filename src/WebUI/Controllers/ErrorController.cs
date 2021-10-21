@@ -24,12 +24,13 @@ namespace BvAcademyPortal.WebUI.Controllers
         public IActionResult Error()
         {
             var context = HttpContext.Features.Get<IExceptionHandlerFeature>(); 
-            _logger.LogError($"An error occured {context.Error.Message}");
+            _logger.LogError($"An error occured {context.Error}");
 
-            return Problem(type: context.Error.Source,
+            return Problem(type: "Critical Error",
                 title: "An error occured",
+                statusCode: 501,
                 detail: context.Error.Message,
-                instance: context.Error.TargetSite.Name);
+                instance: context.Error.Source);
         }
     }
 }
