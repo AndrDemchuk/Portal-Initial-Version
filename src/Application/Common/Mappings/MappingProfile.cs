@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BvAcademyPortal.Application.Users.Commands.CreateUser;
+using BvAcademyPortal.Application.Users.Commands.UpdateUser;
 using BvAcademyPortal.Application.Users.Queries.GetTodos;
 using BvAcademyPortal.Domain.Entities;
 using System;
@@ -19,8 +20,12 @@ namespace BvAcademyPortal.Application.Common.Mappings
                 .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
                 .ForMember(it => it.CourseUsers, opt => opt.Ignore())
                 .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
-
+            CreateMap<UpdateUserCommand, User>()
+                .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
+                .ForMember(it => it.CourseUsers, opt => opt.Ignore())
+                .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
             CreateMap<User, CreateUserCommand>();
+            CreateMap<User, UpdateUserCommand>();
             CreateMap<UserDto, User>()
                 .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
                 .ForMember(it => it.CourseUsers, opt => opt.Ignore())

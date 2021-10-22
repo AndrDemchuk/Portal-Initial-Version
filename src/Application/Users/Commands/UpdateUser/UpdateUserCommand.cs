@@ -1,5 +1,7 @@
-﻿using BvAcademyPortal.Application.Common.Exceptions;
+﻿using AutoMapper;
+using BvAcademyPortal.Application.Common.Exceptions;
 using BvAcademyPortal.Application.Common.Interfaces;
+using BvAcademyPortal.Application.Common.Mappings;
 using BvAcademyPortal.Domain.Entities;
 using BvAcademyPortal.Domain.Enums;
 using MediatR;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
 {
-    public class UpdateUserCommand: IRequest
+    public class UpdateUserCommand: IRequest, IMapFrom<User>
     {
         public int Id { get; set; }
         public bool IsAdmin { get; set; }
@@ -29,10 +31,12 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {
         private readonly IApplicationDbContext _context;
+        private readonly IMapper _maper;
 
-        public UpdateUserCommandHandler(IApplicationDbContext context)
+        public UpdateUserCommandHandler(IApplicationDbContext context, IMapper maper)
         {
             _context = context;
+            _maper = maper;
         }
         public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
@@ -42,6 +46,11 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
             {
                 throw new NotFoundException(nameof(User), request.Id);
             }
+            //else
+            //{
+            //    entity = _maper.Map<User>(request);
+            //}
+
 
             entity.IsAdmin = request.IsAdmin;
             entity.ProfilePhotoLink = request.ProfilePhotoLink;

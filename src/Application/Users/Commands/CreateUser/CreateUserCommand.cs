@@ -44,20 +44,7 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUser
 
         public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var entity = (User)_context.Users.ProjectTo<User>(_maper.ConfigurationProvider);
-
-            //var entity = new User();
-            //entity.IsAdmin = request.IsAdmin;
-            //entity.ProfilePhotoLink = request.ProfilePhotoLink;
-            //entity.FirstName = request.FirstName;
-            //entity.LastName = request.LastName;
-            //entity.BirthDate = request.BirthDate;
-            //entity.City = request.City;
-            //entity.Email = request.Email;
-            //entity.EducationalEstablishment = request.EducationalEstablishment;
-            //entity.Faculty = request.Faculty;
-            //entity.EnglishLevel = request.EnglishLevel;
-
+            var entity = _maper.Map<User>(request);
 
             _context.Users.Add(entity);
 
