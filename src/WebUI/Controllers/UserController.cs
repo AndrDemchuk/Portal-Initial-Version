@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.WebUI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class UserController : ApiControllerBase
     {
         private readonly ICurrentUserService _currentUserService;
