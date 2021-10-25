@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using BvAcademyPortal.Infrastructure.Extensions;
 
 namespace BvAcademyPortal.Infrastructure.Persistence
 {
@@ -32,33 +33,58 @@ namespace BvAcademyPortal.Infrastructure.Persistence
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<SocialNetwork> SocialNetworks { get; set; }
-
         public DbSet<Skill> Skills { get; set; }
 
         public DbSet<SkillType> SkillTypes { get; set; }
 
-        public DbSet<CourseUsers> CoursesUsers { get; set; }
-
-        public DbSet<SkillsUsers> SkillsUsers { get; set; }
-
-        public DbSet<SocialNetworkUsers> SocialNetworskUsers { get; set; }
+        public DbSet<SkillUser> SkillUsers { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+            var entries = ChangeTracker.Entries().Where(e => e is IAuditable || e is IUseSoftDelete);
+            foreach (var entry in entries)
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.UserId;
-                        entry.Entity.Created = _dateTime.Now;
-                        break;
+                        {
+                            if (entry.Entity is IAuditable addedEntity)
+                            {
+                                addedEntity.CreatedBy = _currentUserService.UserId;
+                                addedEntity.Created = _dateTime.Now;
+                            }
+
+                            break;
+                        }
+
 
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                        entry.Entity.LastModified = _dateTime.Now;
-                        break;
+                        {
+                            if (entry.Entity is IAuditable modifiedEntity)
+                            {
+                                modifiedEntity.LastModifiedBy = _currentUserService.UserId;
+                                modifiedEntity.LastModified = _dateTime.Now;
+                            }
+
+                            break;
+                        }
+
+                    case EntityState.Deleted:
+                        {
+                            if (entry.Entity is IUseSoftDelete softDeleteEntity)
+                            {
+                                entry.State = EntityState.Modified;
+                                softDeleteEntity.IsDeleted = true;
+                            }
+
+                            if (entry.Entity is IAuditable deletedEntity)
+                            {
+                                deletedEntity.LastModifiedBy = _currentUserService.UserId;
+                                deletedEntity.LastModified = _dateTime.Now;
+                            }
+
+                            break;
+                        }
                 }
             }
 
@@ -72,6 +98,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.ApplyGlobalFilters<IUseSoftDelete>(e => e.IsDeleted != true);
 
             base.OnModelCreating(builder);
         }

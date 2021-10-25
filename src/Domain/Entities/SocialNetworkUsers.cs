@@ -8,18 +8,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class SocialNetworkUsers : AuditableEntity
+    public class SocialNetworkUsers : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public int UserId { get; set; }
 
         public int SocialNetworkId { get; set; }
 
-        [ForeignKey(name: "UserId")]
+        [ForeignKey(name: nameof(UserId))]
         public virtual User User { get; set; }
 
-        [ForeignKey(name: "SocialNetworkId")]
+        [ForeignKey(name: nameof(SocialNetworkId))]
         public virtual SocialNetwork SocialNetwork { get; set; }
     }
 }

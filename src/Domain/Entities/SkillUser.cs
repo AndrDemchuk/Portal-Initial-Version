@@ -8,20 +8,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BvAcademyPortal.Domain.Entities
 {
     
-    public class SkillsUsers : AuditableEntity
+    public class SkillUser : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public SkillLevel Level { get; set; }
 
         public int UserId { get; set; }
 
         public int SkillId { get; set; }
 
-        [ForeignKey(name: "UserId")]
+        [ForeignKey(name: nameof(UserId))]
         public virtual User User { get; set; }
 
-        [ForeignKey(name: "SkillId")]
+        [ForeignKey(name: nameof(SkillId))]
         public virtual Skill Skill { get; set; }
     }
 }

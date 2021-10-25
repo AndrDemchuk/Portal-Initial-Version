@@ -7,6 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\Migrations\**" />
+    <EmbeddedResource Remove="Persistence\Migrations\**" />
+    <None Remove="Persistence\Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Persistence\Migrations\20211022105825_Initial.cs" />
+    <Compile Include="Persistence\Migrations\20211022105825_Initial.Designer.cs" />
+    <Compile Include="Persistence\Migrations\20211025085219_AddSoftDelete.cs" />
+    <Compile Include="Persistence\Migrations\20211025085219_AddSoftDelete.Designer.cs" />
+    <Compile Include="Persistence\Migrations\ApplicationDbContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.10.0" />
     <PackageReference Include="CsvHelper" Version="15.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
@@ -18,10 +32,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Persistence\Migrations\" />
   </ItemGroup>
 
 </Project>

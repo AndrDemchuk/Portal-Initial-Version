@@ -7,13 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class Skill : AuditableEntity
+    public class Skill : BaseEntity<int>
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         public int SkillTypeId { get; set; }
 
-        [ForeignKey(name: "SkillTypeId")]
+        [ForeignKey(name: nameof(SkillTypeId))]
         public SkillType SkillType { get; set; }
+        public ICollection<SkillUser> SkillsUsers { get; set; }
     }
 }

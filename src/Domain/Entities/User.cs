@@ -7,10 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class User : AuditableEntity
+    public class User : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public bool IsAdmin { get; set; }
 
         public string ProfilePhotoLink { get; set; }
@@ -46,6 +44,6 @@ namespace BvAcademyPortal.Domain.Entities
 
         public virtual ICollection<SocialNetworkUsers> SocialNetworkUsers { get; set; }
 
-        public virtual ICollection<SkillsUsers> SkillsUsers { get; set; }
+        public virtual ICollection<SkillUser> SkillsUsers { get; set; }
     }
 }
