@@ -46,22 +46,10 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
             {
                 throw new NotFoundException(nameof(User), request.Id);
             }
-            //else
-            //{
-            //    entity = _maper.Map<User>(request);
-            //}
-
-
-            entity.IsAdmin = request.IsAdmin;
-            entity.ProfilePhotoLink = request.ProfilePhotoLink;
-            entity.FirstName = request.FirstName;
-            entity.LastName = request.LastName;
-            entity.BirthDate = request.BirthDate;
-            entity.City = request.City;
-            entity.Email = request.Email;
-            entity.EducationalEstablishment = request.EducationalEstablishment;
-            entity.Faculty = request.Faculty;
-            entity.EnglishLevel = request.EnglishLevel;
+            else
+            {
+                _maper.Map<UpdateUserCommand, User>(request, entity);
+            }
 
             await _context.SaveChangesAsync(cancellationToken);
 

@@ -26,6 +26,7 @@ namespace BvAcademyPortal.Application.Common.Mappings
                 .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
             CreateMap<User, CreateUserCommand>();
             CreateMap<User, UpdateUserCommand>();
+            CreateMap<UpdateUserCommand,User >();
             CreateMap<UserDto, User>()
                 .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
                 .ForMember(it => it.CourseUsers, opt => opt.Ignore())
