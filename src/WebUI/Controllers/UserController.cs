@@ -29,6 +29,7 @@ namespace BvAcademyPortal.WebUI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserDto>>> Get()
         {
+            
             return await Mediator.Send(new GetUsersQuery());
         }
 

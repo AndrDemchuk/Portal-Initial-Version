@@ -47,6 +47,7 @@ namespace BvAcademyPortal.Application.Users.Commands.CreateUser
             var entity = _maper.Map<User>(request);
 
             _context.Users.Add(entity);
+            entity.IsDeactivated = false;
 
             await _context.SaveChangesAsync(cancellationToken);
 

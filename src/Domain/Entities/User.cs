@@ -35,6 +35,9 @@ namespace BvAcademyPortal.Domain.Entities
 
         [Required]
         public string Faculty { get; set; }
+        
+        [Required]
+        public bool IsDeactivated { get; set; }
 
         [Required]
         public EnglishLevel EnglishLevel { get; set; }

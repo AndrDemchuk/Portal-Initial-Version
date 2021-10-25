@@ -36,9 +36,7 @@ namespace BvAcademyPortal.Application.Users.Commands.DeleteUser
                 throw new NotFoundException(nameof(User), request.Id);
             }
 
-            
-            _context.Users.Remove(entity);
-            
+            entity.IsDeactivated = true;
 
             await _context.SaveChangesAsync(cancellationToken);
 

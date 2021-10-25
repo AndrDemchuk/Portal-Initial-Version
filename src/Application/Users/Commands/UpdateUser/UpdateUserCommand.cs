@@ -18,7 +18,6 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
     {
         public int Id { get; set; }
         public bool IsAdmin { get; set; }
-        public string ProfilePhotoLink { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
@@ -27,6 +26,8 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
         public string EducationalEstablishment { get; set; }
         public string Faculty { get; set; }
         public EnglishLevel EnglishLevel { get; set; }
+
+        public bool IsDeactivated { get; set; }
     }
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
     {

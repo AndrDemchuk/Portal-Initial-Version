@@ -35,7 +35,7 @@ namespace BvAcademyPortal.Application.Users.Queries.GetTodos
             users = await _context.Users
                     .AsNoTracking()
                     .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(t => t.FirstName)
+                    .OrderBy(t => t.FirstName).Where(it=>it.IsDeactivated==false)
                     .ToListAsync(cancellationToken);
             return users;
         }

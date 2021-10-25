@@ -956,6 +956,9 @@
           },
           "englishLevel": {
             "$ref": "#/components/schemas/EnglishLevel"
+          },
+          "isDeactivated": {
+            "type": "boolean"
           }
         }
       },
@@ -1033,10 +1036,6 @@
           "isAdmin": {
             "type": "boolean"
           },
-          "profilePhotoLink": {
-            "type": "string",
-            "nullable": true
-          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -1068,6 +1067,9 @@
           },
           "englishLevel": {
             "$ref": "#/components/schemas/EnglishLevel"
+          },
+          "isDeactivated": {
+            "type": "boolean"
           }
         }
       },
