@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -19,13 +20,16 @@ namespace BvAcademyPortal.WebUI.Controllers
     {
         private readonly ICurrentUserService _currentUserService;
 
+
         public UserController(ICurrentUserService currentUserService)
         {
             _currentUserService = currentUserService;
         }
+
         [HttpGet]
-        public async Task<ActionResult<UsersVm>> Get()
+        public async Task<ActionResult<List<UserDto>>> Get()
         {
+            
             return await Mediator.Send(new GetUsersQuery());
         }
 

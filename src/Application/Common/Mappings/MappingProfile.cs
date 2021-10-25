@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using BvAcademyPortal.Application.Users.Commands.CreateUser;
+using BvAcademyPortal.Application.Users.Commands.UpdateUser;
+using BvAcademyPortal.Application.Users.Queries.GetTodos;
+using BvAcademyPortal.Domain.Entities;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -10,8 +14,24 @@ namespace BvAcademyPortal.Application.Common.Mappings
         public MappingProfile()
         {
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-        }
 
+            CreateMap<CreateUserCommand, User>()
+                .ForMember(it => it.Id, opt => opt.Ignore())
+                .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
+                .ForMember(it => it.CourseUsers, opt => opt.Ignore())
+                .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
+            CreateMap<UpdateUserCommand, User>()
+                .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
+                .ForMember(it => it.CourseUsers, opt => opt.Ignore())
+                .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
+            CreateMap<User, CreateUserCommand>();
+            CreateMap<User, UpdateUserCommand>();
+            CreateMap<UpdateUserCommand,User >();
+            CreateMap<UserDto, User>()
+                .ForMember(it => it.SkillsUsers, opt => opt.Ignore())
+                .ForMember(it => it.CourseUsers, opt => opt.Ignore())
+                .ForMember(it => it.SocialNetworkUsers, opt => opt.Ignore());
+        }
         private void ApplyMappingsFromAssembly(Assembly assembly)
         {
             var types = assembly.GetExportedTypes()
@@ -29,6 +49,7 @@ namespace BvAcademyPortal.Application.Common.Mappings
                 methodInfo?.Invoke(instance, new object[] { this });
 
             }
+
         }
     }
 }

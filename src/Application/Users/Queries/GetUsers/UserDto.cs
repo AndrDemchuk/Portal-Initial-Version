@@ -32,5 +32,7 @@ namespace BvAcademyPortal.Application.Users.Queries.GetTodos
         public string Faculty { get; set; }
 
         public EnglishLevel EnglishLevel { get; set; }
+
+        public bool IsDeactivated { get; set; }
     }
 }

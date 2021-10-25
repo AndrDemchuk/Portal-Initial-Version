@@ -44,7 +44,7 @@ namespace BvAcademyPortal.Application.Users.Commands.UpdateUser
                 .NotEmpty().WithMessage("Birthdate is required.")
                 .InclusiveBetween(greaterThan, lessThan);
             RuleFor(v => v.EnglishLevel)
-                .NotEmpty().WithMessage("Birthdate is required.");
+                .NotEmpty().WithMessage("EnglishLevel is required.");
         }
 
         private async Task<bool> BeUniqueEmail(string email, CancellationToken cancellationToken)

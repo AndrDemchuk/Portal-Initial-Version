@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BvAcademyPortal.WebUI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CoursesController : ApiControllerBase
     {
         [HttpGet]

@@ -31,6 +31,31 @@
         ]
       }
     },
+    "/api/1.0/Account": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_GetUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserShortDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/1.0/Courses": {
       "get": {
         "tags": [
@@ -48,7 +73,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -79,7 +109,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/Courses/{id}": {
@@ -112,7 +147,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -155,7 +195,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -186,7 +231,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/SkillTypes": {
@@ -498,7 +548,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UsersVm"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
                 }
               }
             }
@@ -788,6 +841,28 @@
           }
         }
       },
+      "UserShortDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "profilePhotoLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "CreateCourseCommand": {
         "type": "object",
         "additionalProperties": false,
@@ -998,19 +1073,6 @@
           3
         ]
       },
-      "UsersVm": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "lists": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "$ref": "#/components/schemas/UserDto"
-            }
-          }
-        }
-      },
       "UserDto": {
         "type": "object",
         "additionalProperties": false,
@@ -1057,6 +1119,9 @@
           },
           "englishLevel": {
             "$ref": "#/components/schemas/EnglishLevel"
+          },
+          "isDeactivated": {
+            "type": "boolean"
           }
         }
       },
@@ -1134,10 +1199,6 @@
           "isAdmin": {
             "type": "boolean"
           },
-          "profilePhotoLink": {
-            "type": "string",
-            "nullable": true
-          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -1169,6 +1230,9 @@
           },
           "englishLevel": {
             "$ref": "#/components/schemas/EnglishLevel"
+          },
+          "isDeactivated": {
+            "type": "boolean"
           }
         }
       },
