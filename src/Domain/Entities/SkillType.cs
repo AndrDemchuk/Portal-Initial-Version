@@ -7,12 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class SkillType : AuditableEntity
+    public class SkillType : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
         public ICollection<Skill> Skills { get; set; }
-
     }
 }

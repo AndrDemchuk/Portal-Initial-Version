@@ -195,18 +195,6 @@
           "SkillTypes"
         ],
         "operationId": "SkillTypes_Get",
-        "requestBody": {
-          "x-name": "query",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetSkillTypesQuery"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
         "responses": {
           "200": {
             "description": "",
@@ -221,7 +209,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/SkillUsers": {
@@ -510,7 +503,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -541,7 +539,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/User/{id}": {
@@ -586,7 +589,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -617,7 +625,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
     },
     "/api/1.0/User/UploadImage": {
@@ -833,10 +846,6 @@
             "nullable": true
           }
         }
-      },
-      "GetSkillTypesQuery": {
-        "type": "object",
-        "additionalProperties": false
       },
       "SkillUserCreationDto": {
         "type": "object",

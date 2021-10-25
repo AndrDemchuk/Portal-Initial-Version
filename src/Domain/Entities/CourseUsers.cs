@@ -7,10 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class CourseUsers : AuditableEntity
+    public class CourseUsers : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public int UserId { get; set; }
 
         public int CourseId { get; set; }

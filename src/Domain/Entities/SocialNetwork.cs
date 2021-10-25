@@ -7,10 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class SocialNetwork : AuditableEntity
+    public class SocialNetwork : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Link { get; set; }

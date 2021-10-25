@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 namespace BvAcademyPortal.Domain.Entities
 {
-    public class Topic : AuditableEntity, IHasDomainEvent
+    public class Topic : BaseEntity<int>, IHasDomainEvent
     {
-        public int Id { get; set; }
 
         public Course List { get; set; }
 
