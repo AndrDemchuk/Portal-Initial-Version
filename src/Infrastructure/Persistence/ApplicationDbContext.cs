@@ -27,10 +27,6 @@ namespace BvAcademyPortal.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
-        public DbSet<Topic> Topics { get; set; }
-
-        public DbSet<Course> Courses { get; set; }
-
         public DbSet<User> Users { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
