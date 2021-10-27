@@ -14,11 +14,16 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Colour_Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CoursePhotoLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,7 +40,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +49,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SocialNetworks",
+                name: "SocialNetwork",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -53,11 +59,12 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SocialNetworks", x => x.Id);
+                    table.PrimaryKey("PK_SocialNetwork", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,11 +82,13 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EducationalEstablishment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Faculty = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeactivated = table.Column<bool>(type: "bit", nullable: false),
                     EnglishLevel = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,7 +110,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,7 +135,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,7 +150,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CoursesUsers",
+                name: "CourseUsers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -150,19 +161,20 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CoursesUsers", x => x.Id);
+                    table.PrimaryKey("PK_CourseUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CoursesUsers_Courses_CourseId",
+                        name: "FK_CourseUsers_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CoursesUsers_Users_UserId",
+                        name: "FK_CourseUsers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -170,7 +182,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SocialNetworskUsers",
+                name: "SocialNetworkUsers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -180,19 +192,20 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SocialNetworskUsers", x => x.Id);
+                    table.PrimaryKey("PK_SocialNetworkUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SocialNetworskUsers_SocialNetworks_SocialNetworkId",
+                        name: "FK_SocialNetworkUsers_SocialNetwork_SocialNetworkId",
                         column: x => x.SocialNetworkId,
-                        principalTable: "SocialNetworks",
+                        principalTable: "SocialNetwork",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SocialNetworskUsers_Users_UserId",
+                        name: "FK_SocialNetworkUsers_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -211,7 +224,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,13 +245,13 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoursesUsers_CourseId",
-                table: "CoursesUsers",
+                name: "IX_CourseUsers_CourseId",
+                table: "CourseUsers",
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoursesUsers_UserId",
-                table: "CoursesUsers",
+                name: "IX_CourseUsers_UserId",
+                table: "CourseUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -256,13 +270,13 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialNetworskUsers_SocialNetworkId",
-                table: "SocialNetworskUsers",
+                name: "IX_SocialNetworkUsers_SocialNetworkId",
+                table: "SocialNetworkUsers",
                 column: "SocialNetworkId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialNetworskUsers_UserId",
-                table: "SocialNetworskUsers",
+                name: "IX_SocialNetworkUsers_UserId",
+                table: "SocialNetworkUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -274,13 +288,13 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CoursesUsers");
+                name: "CourseUsers");
 
             migrationBuilder.DropTable(
                 name: "SkillUsers");
 
             migrationBuilder.DropTable(
-                name: "SocialNetworskUsers");
+                name: "SocialNetworkUsers");
 
             migrationBuilder.DropTable(
                 name: "Topics");
@@ -289,7 +303,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                 name: "Skills");
 
             migrationBuilder.DropTable(
-                name: "SocialNetworks");
+                name: "SocialNetwork");
 
             migrationBuilder.DropTable(
                 name: "Users");

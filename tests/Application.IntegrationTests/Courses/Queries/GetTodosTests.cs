@@ -28,17 +28,7 @@ namespace BvAcademyPortal.Application.IntegrationTests.Courses.Queries
             await AddAsync(new Course
             {
                 Title = "Shopping",
-                Colour = Colour.Blue,
-                Topics =
-                    {
-                        new Topic { Title = "Apples", Done = true },
-                        new Topic { Title = "Milk", Done = true },
-                        new Topic { Title = "Bread", Done = true },
-                        new Topic { Title = "Toilet paper" },
-                        new Topic { Title = "Pasta" },
-                        new Topic { Title = "Tissues" },
-                        new Topic { Title = "Tuna" }
-                    }
+                Description = "shopping"
             });
 
             var query = new GetTodosQuery();
