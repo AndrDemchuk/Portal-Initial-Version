@@ -34,9 +34,4 @@
     <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Files\Maps\" />
-    <Folder Include="Persistence\Configurations\" />
-  </ItemGroup>
-
 </Project>

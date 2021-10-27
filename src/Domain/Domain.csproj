@@ -6,8 +6,4 @@
     <AssemblyName>BvAcademyPortal.Domain</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
-
 </Project>
