@@ -1,5 +1,6 @@
 ﻿using BvAcademyPortal.Domain.Common;
 using BvAcademyPortal.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 
 namespace BvAcademyPortal.Domain.Entities
@@ -7,12 +8,11 @@ namespace BvAcademyPortal.Domain.Entities
     public class Course : BaseEntity<int>
     {
         public string Title { get; set; }
-        public Colour Colour { get; set; } = Colour.White;
-        //add start date
-        //rating
-        //lenght (end date or int)
-        //short desc
-        public IList<Topic> Topics { get; private set; } = new List<Topic>();
+        public string CoursePhotoLink { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<CourseUsers> CourseUsers { get; set; }
     }

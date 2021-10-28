@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211025085219_AddSoftDelete")]
-    partial class AddSoftDelete
+    [Migration("20211027123618_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,26 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("CoursePhotoLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -42,6 +57,11 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -359,6 +379,9 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeactivated")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -378,29 +401,6 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
-                {
-                    b.OwnsOne("BvAcademyPortal.Domain.ValueObjects.Colour", "Colour", b1 =>
-                        {
-                            b1.Property<int>("CourseId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .UseIdentityColumn();
-
-                            b1.Property<string>("Code")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("CourseId");
-
-                            b1.ToTable("Courses");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CourseId");
-                        });
-
-                    b.Navigation("Colour");
                 });
 
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.CourseUsers", b =>
@@ -474,7 +474,7 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Topic", b =>
                 {
                     b.HasOne("BvAcademyPortal.Domain.Entities.Course", "List")
-                        .WithMany("Topics")
+                        .WithMany()
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -485,8 +485,6 @@ namespace BvAcademyPortal.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Course", b =>
                 {
                     b.Navigation("CourseUsers");
-
-                    b.Navigation("Topics");
                 });
 
             modelBuilder.Entity("BvAcademyPortal.Domain.Entities.Skill", b =>

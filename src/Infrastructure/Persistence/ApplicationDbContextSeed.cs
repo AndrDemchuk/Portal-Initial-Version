@@ -16,18 +16,8 @@ namespace BvAcademyPortal.Infrastructure.Persistence
                 context.Courses.Add(new Course
                 {
                     Title = ".NET",
-                    Colour = Colour.Blue,
-                    Topics =
-                    {
-                        new Topic { Title = "Apples", Done = true },
-                        new Topic { Title = "Milk", Done = true },
-                        new Topic { Title = "Bread", Done = true },
-                        new Topic { Title = "Toilet paper" },
-                        new Topic { Title = "Pasta" },
-                        new Topic { Title = "Tissues" },
-                        new Topic { Title = "Tuna" },
-                        new Topic { Title = "Water" }
-                    }
+                    Description = "Course for .NET Developers",
+
                 });
 
                 await context.SaveChangesAsync().ConfigureAwait(false);
