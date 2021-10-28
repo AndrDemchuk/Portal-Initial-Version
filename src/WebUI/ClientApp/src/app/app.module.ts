@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 import { InteractionType, IPublicClientApplication, PublicClientApplication } from '@azure/msal-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -18,6 +17,7 @@ import {
 import { ApiService } from './shared/services/api.service';
 import { ApiCache } from './shared/api/silly-cache';
 import { AppInfo } from './app.info';
+import { AppRoutingModule } from './app-routing.module';
 
 /**
  * Here we pass the configuration parameters to create an MSAL instance.
@@ -56,13 +56,6 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   };
 }
 
-
-const routes: Routes = [
-  {
-    path: '**', component: HomeComponent, canActivate: [MsalGuard]
-  },
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +67,7 @@ const routes: Routes = [
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserAnimationsModule,
     ModalModule.forRoot()
   ],
