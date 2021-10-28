@@ -6,13 +6,8 @@ import { ApiService } from 'app/shared/services/api.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-
-  /**
-   *
-   */
+  
   constructor(private apiService: ApiService) {
-
-
   }
 
   ngOnInit() {
